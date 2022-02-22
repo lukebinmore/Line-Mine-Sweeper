@@ -2,6 +2,10 @@
 
 # endregion
 
+# region Global Variables
+WINDOW_WIDTH = 80
+# endregion
+
 # region Game Board Class
 class Board:
     """
@@ -29,8 +33,15 @@ class Board:
         self.grid_visable = [
             [" " for column in range(self.size) for row in range(self.size)]
         ]
+# endregion
 
-
+# region Functions
+def center_line(line):
+    """
+    Centers the given string based on the width of the terminal, set with the global WIDTH perameter.
+    """
+    new_line_spaces = int((WINDOW_WIDTH - len(line)) / 2)
+    return "".join([" " for space in range(new_line_spaces)]) + line
 # endregion
 
 # region Main
@@ -40,9 +51,7 @@ def main():
     """
 
     game = Board(7)
-    print(game.grid_hidden)
-    print(game.grid_visable)
-
+    print(center_line("testpoisdjfpoksdfo"))
 
 main()
 # endregion
