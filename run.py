@@ -1,6 +1,6 @@
 # region Imports
 from random import randint
-from readchar import readchar
+from readchar import readkey
 import os
 # endregion
 
@@ -181,12 +181,12 @@ def menu():
         print()
         print("Please enter your selection:")
 
-        selection = readchar()
-        if selection == b"1":
+        selection = readkey()
+        if selection == "1":
+            print()
+        elif selection == "2":
             print_title()
-        elif selection == b"2":
-            print_title()
-        elif selection == b"\r":
+        elif selection == "\r":
             print("testing")
             return settings
 
