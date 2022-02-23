@@ -5,6 +5,7 @@ from random import randint
 
 # region Global Variables
 WINDOW_WIDTH = 80
+MINE_VAL = -1
 # endregion
 
 # region Game Board Class
@@ -22,6 +23,7 @@ class Board:
         self.size = grid_size
         self.create_grids()
         self.create_mines()
+        self.set_numbers()
 
     def create_grids(self):
         """
@@ -49,7 +51,7 @@ class Board:
         print(center_line(heading_top))
         print()
 
-        for i, row in enumerate(self.grid_visable):
+        for i, row in enumerate(self.grid_hidden):
             new_line = ""
 
             if i == 0:
@@ -85,9 +87,51 @@ class Board:
                 new_row = randint(0, self.size - 1)
                 new_column = randint(0, self.size - 1)
 
-                if self.grid_hidden[new_row][new_column] != 4:
-                    self.grid_hidden[new_row][new_column] = 4
+                if self.grid_hidden[new_row][new_column] != MINE_VAL:
+                    self.grid_hidden[new_row][new_column] = MINE_VAL
                     break
+
+    def set_numbers(self):
+        """
+        Sets the correct numbers for each cell in the hidden grid.
+        Checks each cell's neighboring cells for mines.
+        Increases cell value if it is next to a mine.
+        """
+        for row in range(self.size):
+            for col, cell in enumerate(self.grid_hidden[row]):
+                if cell == MINE_VAL:
+                    continue
+
+                if row > 0:
+                    if col > 0 and self.grid_hidden[row - 1][col - 1] == MINE_VAL:
+                        self.grid_hidden[row][col] += 1
+
+                    if self.grid_hidden[row - 1][col] == MINE_VAL:
+                        self.grid_hidden[row][col] += 1
+
+                    if (
+                        col < self.size - 1
+                        and self.grid_hidden[row - 1][col + 1] == MINE_VAL
+                    ):
+                        self.grid_hidden[row][col] += 1
+
+                if col > 0 and self.grid_hidden[row][col - 1] == MINE_VAL:
+                    self.grid_hidden[row][col] += 1
+                if col < self.size - 1 and self.grid_hidden[row][col + 1] == MINE_VAL:
+                    self.grid_hidden[row][col] += 1
+
+                if row < self.size - 1:
+                    if col > 0 and self.grid_hidden[row + 1][col - 1] == MINE_VAL:
+                        self.grid_hidden[row][col] += 1
+
+                    if self.grid_hidden[row + 1][col] == MINE_VAL:
+                        self.grid_hidden[row][col] += 1
+
+                    if (
+                        col < self.size - 1
+                        and self.grid_hidden[row + 1][col + 1] == MINE_VAL
+                    ):
+                        self.grid_hidden[row][col] += 1
 
 
 # endregion
