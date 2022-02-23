@@ -1,4 +1,5 @@
 # region Imports
+from random import randint
 
 # endregion
 
@@ -13,12 +14,14 @@ class Board:
     """
 
     size = 7
+    mines = 5
     grid_hidden = []
     grid_visable = []
 
     def __init__(self, grid_size):
         self.size = grid_size
         self.create_grids()
+        self.create_mines()
 
     def create_grids(self):
         """
@@ -72,13 +75,28 @@ class Board:
             new_line = new_line + "".join(["|_____" for cell in row]) + "|   "
             print(center_line(new_line))
 
+    def create_mines(self):
+        """
+        Uses randint from the random library to create randomly located mines in the hidden grid.
+        """
+
+        for _ in range(self.mines):
+            while True:
+                new_row = randint(0, self.size - 1)
+                new_column = randint(0, self.size - 1)
+
+                if self.grid_hidden[new_row][new_column] != 4:
+                    self.grid_hidden[new_row][new_column] = 4
+                    break
+
 
 # endregion
 
 # region Functions
 def center_line(line):
     """
-    Centers the given string based on the width of the terminal, set with the global WIDTH perameter.
+    Centers the given string based on the width of the terminal,
+    set with the global WIDTH perameter.
     """
 
     new_line_spaces = int((WINDOW_WIDTH - len(line)) / 2)
