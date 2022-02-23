@@ -1,10 +1,11 @@
 # region Imports
 from random import randint
 from readchar import readchar
-
+import os
 # endregion
 
 # region Global Variables
+TITLE = "  LINE MINE SWEEPER!!!  "
 WINDOW_WIDTH = 80
 MINE_VAL = -1
 DEFAULT_SETTINGS = [7, 10]
@@ -47,6 +48,8 @@ class Board:
         Adds stylings to each row of the visable grid.
         Prints out visable grid row by row, using center_line function.
         """
+
+        print_title()
 
         heading_top = (
             "".join(["|  " + str(i + 1) + "  " for i in range(self.size)]) + "|"
@@ -161,7 +164,7 @@ def menu():
     print(settings)
 
     while True:
-        print(center_line("TITLE"))
+        print_title()
         print()
         print(center_line("Welcome to Line Mine Sweeper!!"))
         print(center_line("Please select your desired settings below:"))
@@ -174,27 +177,35 @@ def menu():
         print()
         print(center_line("ENTER:"))
         print(center_line("Start Game!"))
-        print()
-        print(center_line("ESC:"))
-        print(center_line("Exit Game"))
 
         print()
         print("Please enter your selection:")
 
         selection = readchar()
-        print(selection)
         if selection == b"1":
-            print()
+            print_title()
         elif selection == b"2":
-            print()
+            print_title()
         elif selection == b"\r":
+            print("testing")
             return settings
-        elif selection == b"\x1b":
-            exit()
 
     return settings
 
 
+def print_title():
+    """
+    Clears the current screen.
+    Prints title to terminal.
+    Uses TITLE constant for title, and fills rest in with hashtags.
+    """
+
+    clear_terminal = lambda: os.system("cls" if os.name in ["nt", "dos"] else "clear")
+    clear_terminal()
+
+    new_line_spaces = int((WINDOW_WIDTH - len(TITLE)) / 2)
+    new_line_section = "".join(["#" for space in range(new_line_spaces)])
+    print(new_line_section + TITLE + new_line_section)
 # endregion
 
 # region Main
