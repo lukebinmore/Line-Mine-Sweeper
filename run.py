@@ -1,11 +1,13 @@
 # region Imports
 from random import randint
+from readchar import readchar
 
 # endregion
 
 # region Global Variables
 WINDOW_WIDTH = 80
 MINE_VAL = -1
+DEFAULT_SETTINGS = [7, 10]
 # endregion
 
 # region Game Board Class
@@ -14,13 +16,14 @@ class Board:
     Minesweeper game class.
     """
 
-    size = 7
-    mines = 5
+    size = 0
+    mines = 0
     grid_hidden = []
     grid_visable = []
 
-    def __init__(self, grid_size):
-        self.size = grid_size
+    def __init__(self, settings):
+        self.size = settings[0]
+        self.mines = settings[1]
         self.create_grids()
         self.create_mines()
         self.set_numbers()
@@ -147,6 +150,51 @@ def center_line(line):
     return "".join([" " for space in range(new_line_spaces)]) + line
 
 
+def menu():
+    """
+    Menu generator.
+    Creates a menu of options, and uses user input to set settings for game.
+    Returns settings as list.
+    """
+
+    settings = [setting for setting in DEFAULT_SETTINGS]
+    print(settings)
+
+    while True:
+        print(center_line("TITLE"))
+        print()
+        print(center_line("Welcome to Line Mine Sweeper!!"))
+        print(center_line("Please select your desired settings below:"))
+        print()
+        print(center_line("1:"))
+        print(center_line(f"Set Game Size (Current: {settings[0]}X{settings[0]})"))
+        print()
+        print(center_line("2:"))
+        print(center_line(f"Set Mine Count (Current: {settings[1]})"))
+        print()
+        print(center_line("ENTER:"))
+        print(center_line("Start Game!"))
+        print()
+        print(center_line("ESC:"))
+        print(center_line("Exit Game"))
+
+        print()
+        print("Please enter your selection:")
+
+        selection = readchar()
+        print(selection)
+        if selection == b"1":
+            print()
+        elif selection == b"2":
+            print()
+        elif selection == b"\r":
+            return settings
+        elif selection == b"\x1b":
+            exit()
+
+    return settings
+
+
 # endregion
 
 # region Main
@@ -155,7 +203,7 @@ def main():
     Main function
     """
 
-    game = Board(7)
+    game = Board(menu())
     game.draw_board()
 
 
