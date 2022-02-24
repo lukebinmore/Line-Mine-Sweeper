@@ -163,8 +163,6 @@ def menu():
     settings = [setting for setting in DEFAULT_SETTINGS]
 
     while True:
-        settings = [int(setting) for setting in settings]
-
         print_title()
         print()
         print(center_line("Welcome to Line Mine Sweeper!!"))
@@ -178,44 +176,71 @@ def menu():
         print()
         print(center_line("ENTER:"))
         print(center_line("Start Game!"))
-
         print()
 
-        selection = input(center_line("Please enter your selection: "))
-
-        if selection == "1":
-            print_title()
-            print()
-            print(center_line("Please enter your desired grid size."))
-            print(
-                center_line(
-                    "Please enter a single number for grid size. (E.G. 5 = 5X5)"
-                )
-            )
-            print(center_line("Minimum = 2 | Maximum = 6"))
-            print(center_line(f"Current = {settings[0]} X {settings[0]}"))
-            print()
-
+        try:
             selection = input(center_line("Please enter your selection: "))
-            settings[0] = selection
-        elif selection == "2":
-            print_title()
-            print()
-            print(center_line("Please enter your desired mine count."))
-            print(
-                center_line(
-                    "Please enter a single or double digit number. (E.G. 5 OR 20)"
-                )
-            )
-            print(center_line("Minimum = 1 | Maximum = Grid Size X Grid Size"))
-            print(center_line(f"Current Mines = {settings[1]}"))
-            print(center_line(f"Current Max = {settings[0] * settings[0]}"))
-            print()
 
-            selection = input(center_line("Please enter your selection: "))
-            settings[1] = selection
-        elif selection == "":
-            return settings
+            if selection == "1":
+                print_title()
+                print()
+                print(center_line("Please enter your desired grid size."))
+                print(
+                    center_line(
+                        "Please enter a single number for grid size. (E.G. 5 = 5X5)"
+                    )
+                )
+                print(center_line("Minimum = 2 | Maximum = 6"))
+                print(center_line(f"Current = {settings[0]} X {settings[0]}"))
+                print()
+
+                selection = input(center_line("Please enter your selection: "))
+
+                if selection.isdigit():
+                    selection = int(selection)
+                else:
+                    raise ValueError(f"INVALID INPUT: {selection} is not a number.")
+
+                if selection < 2:
+                    raise ValueError(f"INVALID INPUT: {selection} is too low.")
+                elif selection > 6:
+                    raise ValueError(f"INVALID INPUT: {selection} is too high.")
+                else:
+                    settings[0] = selection
+
+            elif selection == "2":
+                print_title()
+                print()
+                print(center_line("Please enter your desired mine count."))
+                print(
+                    center_line(
+                        "Please enter a single or double digit number. (E.G. 5 OR 20)"
+                    )
+                )
+                print(center_line(f"Minimum = 1 | Maximum = {settings[0] * settings[0]}"))
+                print(center_line(f"Current Mines = {settings[1]}"))
+                print()
+
+                selection = input(center_line("Please enter your selection: "))
+
+                if selection.isdigit():
+                    selection = int(selection)
+                else:
+                    raise ValueError(f"INVALID INPUT: {selection} is not a number.")
+
+                if selection < 1:
+                    raise ValueError(f"INVALID INPUT: {selection} is too low.")
+                elif selection > settings[0] * settings[0]:
+                    raise ValueError(f"INVALID INPUT: {selection} is too high.")
+                else:
+                    settings[1] = selection
+
+            elif selection == "":
+                return settings
+            else:
+                raise ValueError(f"UNKNOWN INPUT: {selection} is not an option.")
+        except ValueError as error:
+            error_message(error)
 
     return settings
 
@@ -230,9 +255,9 @@ def error_message(error):
     print()
     print(center_line("ERROR HAS BEEN ENCOUNTERED!!!"))
     print()
-    print(center_line(error))
+    print(center_line(str(error)))
     print()
-    input("Please press ENTER to continue... ")
+    input(center_line("Please press ENTER to continue... "))
 
 
 def print_title():
