@@ -1,14 +1,13 @@
 # region Imports
-from random import randint
-from readchar import readkey
 import os
+from random import randint
 # endregion
 
 # region Global Variables
 TITLE = "  LINE MINE SWEEPER!!!  "
 WINDOW_WIDTH = 80
 MINE_VAL = -1
-DEFAULT_SETTINGS = [7, 10]
+DEFAULT_SETTINGS = [6, 10]
 # endregion
 
 # region Game Board Class
@@ -161,33 +160,52 @@ def menu():
     """
 
     settings = [setting for setting in DEFAULT_SETTINGS]
-    print(settings)
 
     while True:
+        settings = [int(setting) for setting in settings]
+
         print_title()
         print()
         print(center_line("Welcome to Line Mine Sweeper!!"))
         print(center_line("Please select your desired settings below:"))
         print()
         print(center_line("1:"))
-        print(center_line(f"Set Game Size (Current: {settings[0]}X{settings[0]})"))
+        print(center_line(f"Set Game Size - Current: {settings[0]}X{settings[0]}"))
         print()
         print(center_line("2:"))
-        print(center_line(f"Set Mine Count (Current: {settings[1]})"))
+        print(center_line(f"Set Mine Count - Current: {settings[1]}"))
         print()
         print(center_line("ENTER:"))
         print(center_line("Start Game!"))
 
         print()
-        print("Please enter your selection:")
 
-        selection = readkey()
+        selection = input(center_line("Please enter your selection: "))
+
         if selection == "1":
+            print_title()
             print()
+            print(center_line("Please enter your desired grid size."))
+            print(center_line("Please enter a single number for grid size. (E.G. 5 = 5X5)"))
+            print(center_line("Minimum = 2 | Maximum = 6"))
+            print(center_line(f"Current = {settings[0]} X {settings[0]}"))
+            print()
+
+            selection = input(center_line("Please enter your selection: "))
+            settings[0] = selection
         elif selection == "2":
             print_title()
-        elif selection == "\r":
-            print("testing")
+            print()
+            print(center_line("Please enter your desired mine count."))
+            print(center_line("Please enter a single or double digit number. (E.G. 5 OR 20)"))
+            print(center_line("Minimum = 1 | Maximum = Grid Size X Grid Size"))
+            print(center_line(f"Current Mines = {settings[1]}"))
+            print(center_line(f"Current Max = {settings[0] * settings[0]}"))
+            print()
+
+            selection = input(center_line("Please enter your selection: "))
+            settings[1] = selection
+        elif selection == "":
             return settings
 
     return settings
