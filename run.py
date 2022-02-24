@@ -177,6 +177,10 @@ def menu():
         print(center_line("ENTER:"))
         print(center_line("Start Game!"))
         print()
+        if settings[1] > settings[0] * settings[0]:
+            print(center_line("!!!MINE COUNT TOO HIGH!!!"))
+            print(center_line("Please increase grid size, or decrease mine count!"))
+            print()
 
         try:
             selection = input(center_line("Please enter your selection: "))
@@ -236,7 +240,10 @@ def menu():
                     settings[1] = selection
 
             elif selection == "":
-                return settings
+                if settings[1] > settings[0] * settings[0]:
+                    raise ValueError("ERROR: Cannot start game. Too many mines.")
+                else:
+                    return settings
             else:
                 raise ValueError(f"UNKNOWN INPUT: {selection} is not an option.")
         except ValueError as error:
