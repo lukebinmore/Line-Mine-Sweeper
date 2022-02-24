@@ -231,7 +231,8 @@ def menu():
             print()
 
         try:
-            selection = input(center_line("Please enter your selection: "))
+            print(center_line("\bPlease enter your selection: "), end="", flush=True)
+            selection = readkey()
 
             if selection == "1":
                 print_title()
@@ -246,7 +247,8 @@ def menu():
                 print(center_line(f"Current = {settings[0]} X {settings[0]}"))
                 print()
 
-                selection = input(center_line("Please enter your selection: "))
+                print(center_line("\bPlease enter your selection: "), end="", flush=True)
+                selection = readkey()
 
                 if selection.isdigit():
                     selection = int(selection)
@@ -289,7 +291,7 @@ def menu():
                 else:
                     settings[1] = selection
 
-            elif selection == "":
+            elif selection == "\r":
                 if settings[1] > settings[0] * settings[0]:
                     raise ValueError("ERROR: Cannot start game. Too many mines.")
                 else:
@@ -314,7 +316,8 @@ def error_message(error):
     print()
     print(center_line(repr(str(error))))
     print()
-    input(center_line("Please press ENTER to continue... "))
+    print(center_line("Please press any key to continue... "), end="", flush=True)
+    readkey()
 
 
 def print_title():
