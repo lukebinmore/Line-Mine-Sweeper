@@ -5,7 +5,7 @@ from random import randint
 # endregion
 
 # region Global Variables
-TITLE = "  LINE MINE SWEEPER!!!  "
+TITLE = "  LINE MINE SWEEPER!!  "
 WINDOW_WIDTH = 80
 MINE_VAL = -1
 DEFAULT_SETTINGS = [6, 10]
@@ -55,32 +55,31 @@ class Board:
             "".join(["|  " + str(i + 1) + "  " for i in range(self.size)]) + "|"
         )
         print(center_line(heading_top))
-        print()
 
         for i, row in enumerate(self.grid_hidden):
             new_line = ""
 
             if i == 0:
-                new_line = "\u203E  "
+                new_line = "\u203E "
                 new_line = (
                     new_line
                     + "".join(["|\u203E\u203E\u203E\u203E\u203E" for cell in row])
                     + "|   "
                 )
             else:
-                new_line = "   "
-                new_line = new_line + "".join(["|     " for cell in row]) + "|   "
+                new_line = "  "
+                new_line = new_line + "".join(["|     " for cell in row]) + "|  "
 
             print(center_line(new_line))
 
-            new_line = str(i + 1) + "  "
+            new_line = str(i + 1) + " "
             new_line = (
-                new_line + "".join(["|  " + str(cell) + "  " for cell in row]) + "|   "
+                new_line + "".join(["|  " + str(cell) + "  " for cell in row]) + "|  "
             )
             print(center_line(new_line))
 
-            new_line = "_  "
-            new_line = new_line + "".join(["|_____" for cell in row]) + "|   "
+            new_line = "_ "
+            new_line = new_line + "".join(["|_____" for cell in row]) + "|  "
             print(center_line(new_line))
 
     def create_mines(self):
@@ -194,7 +193,7 @@ def menu():
                         "Please enter a single number for grid size. (E.G. 5 = 5X5)"
                     )
                 )
-                print(center_line("Minimum = 2 | Maximum = 6"))
+                print(center_line("Minimum = 2 | Maximum = 7"))
                 print(center_line(f"Current = {settings[0]} X {settings[0]}"))
                 print()
 
@@ -207,7 +206,7 @@ def menu():
 
                 if selection < 2:
                     raise ValueError(f"INVALID INPUT: {selection} is too low.")
-                elif selection > 6:
+                elif selection > 7:
                     raise ValueError(f"INVALID INPUT: {selection} is too high.")
                 else:
                     settings[0] = selection
