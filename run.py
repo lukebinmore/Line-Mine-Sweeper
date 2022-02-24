@@ -312,7 +312,7 @@ def error_message(error):
     print()
     print(center_line("ERROR HAS BEEN ENCOUNTERED!!!"))
     print()
-    print(center_line(str(error)))
+    print(center_line(repr(str(error))))
     print()
     input(center_line("Please press ENTER to continue... "))
 
