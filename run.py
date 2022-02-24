@@ -145,25 +145,47 @@ class Board:
         Takes user's input, and runs appropriate function based on what is received.
         """
 
-        selection = [0, 0, ""]
+        selection = ["", "", ""]
 
         print(center_line("\b\bPlease enter coordinates: "), end="", flush=True)
-        selection[0] = readkey()
-        print(selection[0] + ":", end="", flush=True)
-        selection[1] = readkey()
-        print(selection[1] + ":", end="", flush=True)
-        selection[2] = readkey()
-        print(selection[2], end="", flush=True)
 
-        selection[0] = int(selection[0])
-        selection[1] = int(selection[1])
+        try:
+            selection[0] = readkey()
 
-        if selection[2].lower() == "f":
-            selection[2] = True
-        elif selection[2] == "":
-            selection[2] = False
+            if selection[0].isdigit():
+                selection[0] = int(selection[0])
+            else:
+                raise ValueError(f"INVALID INPUT: {selection[0]} is not a number.")
 
-        return selection
+            if selection[0] < 1 and selection[0] > self.size:
+                raise ValueError(f"INVALID INPUT: {selection[0]} is not on the board.")
+
+            print(str(selection[0]) + ":", end="", flush=True)
+            selection[1] = readkey()
+
+            if selection[1].isdigit():
+                selection[1] = int(selection[1])
+            else:
+                raise ValueError(f"INVALID INPUT: {selection[1]} is not a number.")
+
+            if selection[1] < 1 and selection[1] > self.size:
+                raise ValueError(f"INVALID INPUT: {selection[1]} is not on the board.")
+
+            print(str(selection[1]) + ":", end="", flush=True)
+            selection[2] = readkey()
+
+            if selection[2].lower() == "f":
+                selection[2] = True
+            elif selection[2] == "\r":
+                selection[2] = False
+            else:
+                raise ValueError(
+                    f"INVALID INPUT: {selection[2]} is not 'f/F' or ENTER."
+                )
+
+            return selection
+        except ValueError as error:
+            error_message(error)
 
 
 # endregion
@@ -324,7 +346,6 @@ def main():
         while True:
             game.draw_board()
             print(game.user_input())
-            input()
 
 
 main()
