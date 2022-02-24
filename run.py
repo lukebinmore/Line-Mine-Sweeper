@@ -1,6 +1,7 @@
 # region Imports
 import os
 from random import randint
+from readchar import readkey
 
 # endregion
 
@@ -138,6 +139,32 @@ class Board:
                     ):
                         self.grid_hidden[row][col] += 1
 
+    def user_input(self):
+        """
+        User input manager for game.
+        Takes user's input, and runs appropriate function based on what is received.
+        """
+
+        selection = [0, 0, ""]
+
+        print(center_line("\b\bPlease enter coordinates: "), end="", flush=True)
+        selection[0] = readkey()
+        print(selection[0] + ":", end="", flush=True)
+        selection[1] = readkey()
+        print(selection[1] + ":", end="", flush=True)
+        selection[2] = readkey()
+        print(selection[2], end="", flush=True)
+
+        selection[0] = int(selection[0])
+        selection[1] = int(selection[1])
+
+        if selection[2].lower() == "f":
+            selection[2] = True
+        elif selection[2] == "":
+            selection[2] = False
+
+        return selection
+
 
 # endregion
 
@@ -220,7 +247,9 @@ def menu():
                         "Please enter a single or double digit number. (E.G. 5 OR 20)"
                     )
                 )
-                print(center_line(f"Minimum = 1 | Maximum = {settings[0] * settings[0]}"))
+                print(
+                    center_line(f"Minimum = 1 | Maximum = {settings[0] * settings[0]}")
+                )
                 print(center_line(f"Current Mines = {settings[1]}"))
                 print()
 
@@ -289,8 +318,13 @@ def main():
     Main function
     """
 
-    game = Board(menu())
-    game.draw_board()
+    while True:
+        game = Board(menu())
+
+        while True:
+            game.draw_board()
+            print(game.user_input())
+            input()
 
 
 main()
