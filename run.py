@@ -1,6 +1,7 @@
 # region Imports
 import os
 from random import randint
+
 # endregion
 
 # region Global Variables
@@ -186,7 +187,11 @@ def menu():
             print_title()
             print()
             print(center_line("Please enter your desired grid size."))
-            print(center_line("Please enter a single number for grid size. (E.G. 5 = 5X5)"))
+            print(
+                center_line(
+                    "Please enter a single number for grid size. (E.G. 5 = 5X5)"
+                )
+            )
             print(center_line("Minimum = 2 | Maximum = 6"))
             print(center_line(f"Current = {settings[0]} X {settings[0]}"))
             print()
@@ -197,7 +202,11 @@ def menu():
             print_title()
             print()
             print(center_line("Please enter your desired mine count."))
-            print(center_line("Please enter a single or double digit number. (E.G. 5 OR 20)"))
+            print(
+                center_line(
+                    "Please enter a single or double digit number. (E.G. 5 OR 20)"
+                )
+            )
             print(center_line("Minimum = 1 | Maximum = Grid Size X Grid Size"))
             print(center_line(f"Current Mines = {settings[1]}"))
             print(center_line(f"Current Max = {settings[0] * settings[0]}"))
@@ -209,6 +218,21 @@ def menu():
             return settings
 
     return settings
+
+
+def error_message(error):
+    """
+    Formats and displays an error the program has encountered.
+    Takes in the error as a string, and adjusts the terminal display to show it.
+    """
+
+    print_title()
+    print()
+    print(center_line("ERROR HAS BEEN ENCOUNTERED!!!"))
+    print()
+    print(center_line(error))
+    print()
+    input("Please press ENTER to continue... ")
 
 
 def print_title():
@@ -224,6 +248,8 @@ def print_title():
     new_line_spaces = int((WINDOW_WIDTH - len(TITLE)) / 2)
     new_line_section = "".join(["#" for space in range(new_line_spaces)])
     print(new_line_section + TITLE + new_line_section)
+
+
 # endregion
 
 # region Main
