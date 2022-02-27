@@ -206,13 +206,47 @@ class Board:
             elif value_hidden == -1:
                 print()
             elif value_hidden == 0:
-                print()
+                self.update_neighbours(row, col)
             else:
                 self.grid_visable[row][col] = value_hidden
         else:
             error_message(
                 f"INVALID INPUT: {row}:{col} has already been already revealed!"
             )
+
+    def update_neighbours(self, row, col):
+        """
+        Checks neighbouring cells for 0 values,
+        Addes them to the visable board if they are zero's adjasent to the starting cell.
+        """
+
+        if self.grid_hidden[row][col] == 0 and self.grid_visable[row][col] == " ":
+            self.grid_visable[row][col] = 0
+
+            if row > 0 and col > 0:
+                self.update_neighbours(row - 1, col - 1)
+            
+            if row > 0:
+                self.update_neighbours(row - 1, col)
+            
+            if row > 0 and col < self.size - 1:
+                self.update_neighbours(row - 1, col + 1)
+
+            if col > 0:
+                self.update_neighbours(row, col - 1)
+            
+            if col < self.size - 1:
+                self.update_neighbours(row, col + 1)
+
+            if row < self.size - 1 and col > 0:
+                self.update_neighbours(row + 1, col - 1)
+            
+            if row < self.size - 1:
+                self.update_neighbours(row + 1, col)
+            
+            if row < self.size - 1 and col < self.size - 1:
+                self.update_neighbours(row + 1, col + 1)
+
 
 
 # endregion
