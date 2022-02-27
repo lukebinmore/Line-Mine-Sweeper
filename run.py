@@ -157,7 +157,7 @@ class Board:
             else:
                 raise ValueError(f"INVALID INPUT: {selection[0]} is not a number.")
 
-            if selection[0] < 1 and selection[0] > self.size:
+            if selection[0] < 1 or selection[0] > self.size:
                 raise ValueError(f"INVALID INPUT: {selection[0]} is not on the board.")
 
             print(str(selection[0]) + ":", end="", flush=True)
@@ -168,7 +168,7 @@ class Board:
             else:
                 raise ValueError(f"INVALID INPUT: {selection[1]} is not a number.")
 
-            if selection[1] < 1 and selection[1] > self.size:
+            if selection[1] < 1 or selection[1] > self.size:
                 raise ValueError(f"INVALID INPUT: {selection[1]} is not on the board.")
 
             print(str(selection[1]) + ":", end="", flush=True)
