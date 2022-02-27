@@ -57,7 +57,7 @@ class Board:
         )
         print(center_line(heading_top))
 
-        for i, row in enumerate(self.grid_hidden):
+        for i, row in enumerate(self.grid_visable):
             new_line = ""
 
             if i == 0:
@@ -187,6 +187,31 @@ class Board:
         except ValueError as error:
             error_message(error)
 
+    def update_board(self, selection):
+        """
+        Checks if coordinates have already been revealed, 
+        if not updates the visable board with the user's inputted coordinates.
+        """
+
+        row, col = selection[0] - 1, selection[1] - 1
+        flag = selection[2]
+        value_hidden = self.grid_hidden[row][col]
+        value_visable = self.grid_visable[row][col]
+
+        if value_visable != "" and value_visable != "F":
+            if flag:
+                self.grid_visable[row][col] = "F"
+            elif value_hidden == -1:
+                print()
+            elif value_hidden == 0:
+                print()
+            else:
+                self.grid_visable[row][col] = value_hidden
+        else:
+            error_message(
+                f"INVALID INPUT: {row}:{col} has already been already revealed!"
+            )
+
 
 # endregion
 
@@ -247,7 +272,9 @@ def menu():
                 print(center_line(f"Current = {settings[0]} X {settings[0]}"))
                 print()
 
-                print(center_line("\bPlease enter your selection: "), end="", flush=True)
+                print(
+                    center_line("\bPlease enter your selection: "), end="", flush=True
+                )
                 selection = readkey()
 
                 if selection.isdigit():
@@ -348,7 +375,7 @@ def main():
 
         while True:
             game.draw_board()
-            print(game.user_input())
+            game.update_board(game.user_input())
 
 
 main()
