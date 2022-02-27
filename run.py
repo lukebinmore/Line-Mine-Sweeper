@@ -204,7 +204,7 @@ class Board:
             if flag:
                 self.grid_visable[row][col] = "F"
             elif value_hidden == -1:
-                print()
+                draw_game_results(False)
             elif value_hidden == 0:
                 self.update_neighbours(row, col)
             else:
@@ -225,28 +225,27 @@ class Board:
 
             if row > 0 and col > 0:
                 self.update_neighbours(row - 1, col - 1)
-            
+
             if row > 0:
                 self.update_neighbours(row - 1, col)
-            
+
             if row > 0 and col < self.size - 1:
                 self.update_neighbours(row - 1, col + 1)
 
             if col > 0:
                 self.update_neighbours(row, col - 1)
-            
+
             if col < self.size - 1:
                 self.update_neighbours(row, col + 1)
 
             if row < self.size - 1 and col > 0:
                 self.update_neighbours(row + 1, col - 1)
-            
+
             if row < self.size - 1:
                 self.update_neighbours(row + 1, col)
-            
+
             if row < self.size - 1 and col < self.size - 1:
                 self.update_neighbours(row + 1, col + 1)
-
 
 
 # endregion
@@ -398,6 +397,48 @@ def print_title():
     print(new_line_section + TITLE + new_line_section)
 
 
+def draw_game_results(winner):
+    """
+    Draws the game results screen,
+    Displays Game Over if a mine was hit,
+    Displays You Win! if all mines were found.
+    """
+
+    print_title()
+    print()
+
+    if winner:
+        print(center_line("█████████████████████████████████████████████████"))
+        print(center_line("█▄─█▀▀▀█─▄█▄─▄█▄─▀█▄─▄█▄─▀█▄─▄█▄─▄▄─█▄─▄▄▀█░█░█░█"))
+        print(center_line("██─█─█─█─███─███─█▄▀─███─█▄▀─███─▄█▀██─▄─▄█▄█▄█▄█"))
+        print(center_line("▀▀▄▄▄▀▄▄▄▀▀▄▄▄▀▄▄▄▀▀▄▄▀▄▄▄▀▀▄▄▀▄▄▄▄▄▀▄▄▀▄▄▀▄▀▄▀▄▀"))
+
+        print()
+        print(center_line("YEAH!!!"))
+        print()
+        print(center_line("You Found All The Mines!"))
+        print()
+        print(center_line("You Won! :)"))
+        print()
+        print(center_line("Press Any Key To Continue..."), end="", flush=True)
+    else:
+        print(center_line("█████▀████████████████████████████████████████████████████"))
+        print(center_line("█─▄▄▄▄██▀▄─██▄─▀█▀─▄█▄─▄▄─███─▄▄─█▄─█─▄█▄─▄▄─█▄─▄▄▀█░█░█░█"))
+        print(center_line("█─██▄─██─▀─███─█▄█─███─▄█▀███─██─██▄▀▄███─▄█▀██─▄─▄█▄█▄█▄█"))
+        print(center_line("▀▄▄▄▄▄▀▄▄▀▄▄▀▄▄▄▀▄▄▄▀▄▄▄▄▄▀▀▀▄▄▄▄▀▀▀▄▀▀▀▄▄▄▄▄▀▄▄▀▄▄▀▄▀▄▀▄▀"))
+
+        print()
+        print(center_line("OH NO!!!"))
+        print()
+        print(center_line("You Hit A Mine!"))
+        print()
+        print(center_line("Better Luck Next Time :)"))
+        print()
+        print(center_line("Press Any Key To Continue..."), end="", flush=True)
+
+    readkey()
+
+
 # endregion
 
 # region Main
@@ -411,7 +452,11 @@ def main():
 
         while True:
             game.draw_board()
-            game.update_board(game.user_input())
+
+            user_input = game.user_input()
+
+            if not user_input is None:
+                game.update_board(user_input)
 
 
 main()
