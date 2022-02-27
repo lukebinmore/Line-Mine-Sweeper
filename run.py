@@ -161,6 +161,7 @@ class Board:
                 raise ValueError(f"INVALID INPUT: {selection[0]} is not on the board.")
 
             print(str(selection[0]) + ":", end="", flush=True)
+            selection[0] = selection[0] - 1
             selection[1] = readkey()
 
             if selection[1].isdigit():
@@ -172,6 +173,7 @@ class Board:
                 raise ValueError(f"INVALID INPUT: {selection[1]} is not on the board.")
 
             print(str(selection[1]) + ":", end="", flush=True)
+            selection[1] = int(selection[1]) - 1
             selection[2] = readkey()
 
             if selection[2].lower() == "f":
@@ -189,11 +191,11 @@ class Board:
 
     def update_board(self, selection):
         """
-        Checks if coordinates have already been revealed, 
+        Checks if coordinates have already been revealed,
         if not updates the visable board with the user's inputted coordinates.
         """
 
-        row, col = selection[0] - 1, selection[1] - 1
+        row, col = selection[0], selection[1]
         flag = selection[2]
         value_hidden = self.grid_hidden[row][col]
         value_visable = self.grid_visable[row][col]
