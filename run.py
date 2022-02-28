@@ -213,7 +213,7 @@ class Board:
 
         else:
             error_message(
-                f"INVALID INPUT: {row}:{col} has already been already revealed!"
+                f"INVALID INPUT: {row + 1}:{col + 1} has already been already revealed!"
             )
 
     def update_neighbours(self, row, col):
