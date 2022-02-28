@@ -200,9 +200,11 @@ class Board:
         value_hidden = self.grid_hidden[row][col]
         value_visable = self.grid_visable[row][col]
 
-        if value_visable != "" and value_visable != "F":
+        if value_visable == " " or value_visable == "F":
             if flag:
-                self.grid_visable[row][col] = "F"
+                self.grid_visable[row][col] = (
+                    "F" if self.grid_visable[row][col] == " " else " "
+                )
             elif value_hidden == -1:
                 draw_game_results(False)
             elif value_hidden == 0:
