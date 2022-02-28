@@ -205,8 +205,6 @@ class Board:
                 self.grid_visable[row][col] = (
                     "F" if self.grid_visable[row][col] == " " else " "
                 )
-            elif value_hidden == -1:
-                draw_game_results(False)
             elif value_hidden == 0:
                 self.update_neighbours(row, col)
             else:
@@ -248,6 +246,30 @@ class Board:
 
             if row < self.size - 1 and col < self.size - 1:
                 self.update_neighbours(row + 1, col + 1)
+
+    def check_game_over(self):
+        """
+        Checks if the game should end.
+        Checks if all mines have been flagged and all other cells have been revealed.
+        """
+
+        if -1 in (cell for row in self.grid_visable for cell in row):
+            draw_game_results(False)
+            return False
+
+        if " " in (cell for row in self.grid_visable for cell in row):
+            return True
+
+        flag_count = 0
+        for row in self.grid_visable:
+            for cell in row:
+                flag_count += 1 if cell == "F" else 0
+
+        if flag_count == self.mines:
+            draw_game_results(True)
+            return False
+
+        return False
 
 
 # endregion
@@ -452,7 +474,7 @@ def main():
     while True:
         game = Board(menu())
 
-        while True:
+        while game.check_game_over():
             game.draw_board()
 
             user_input = game.user_input()
