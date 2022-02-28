@@ -2,6 +2,7 @@
 import os
 from random import randint
 from readchar import readkey
+from colorama import init, Fore
 
 # endregion
 
@@ -55,13 +56,13 @@ class Board:
         heading_top = (
             "".join(["|  " + str(i + 1) + "  " for i in range(self.size)]) + "|"
         )
-        print(center_line(heading_top))
+        print(set_color(center_line(heading_top), Fore.CYAN))
 
         for i, row in enumerate(self.grid_visable):
             new_line = ""
 
             if i == 0:
-                new_line = "\u203E "
+                new_line = set_color("\u203E ", Fore.CYAN)
                 new_line = (
                     new_line
                     + "".join(["|\u203E\u203E\u203E\u203E\u203E" for cell in row])
@@ -73,13 +74,13 @@ class Board:
 
             print(center_line(new_line))
 
-            new_line = str(i + 1) + " "
+            new_line = set_color(str(i + 1) + " ", Fore.CYAN)
             new_line = (
                 new_line + "".join(["|  " + str(cell) + "  " for cell in row]) + "|  "
             )
             print(center_line(new_line))
 
-            new_line = "_ "
+            new_line = set_color("_ ", Fore.CYAN)
             new_line = new_line + "".join(["|_____" for cell in row]) + "|  "
             print(center_line(new_line))
 
@@ -209,6 +210,7 @@ class Board:
                 self.update_neighbours(row, col)
             else:
                 self.grid_visable[row][col] = value_hidden
+
         else:
             error_message(
                 f"INVALID INPUT: {row}:{col} has already been already revealed!"
@@ -280,7 +282,6 @@ def center_line(line):
     Centers the given string based on the width of the terminal,
     set with the global WIDTH perameter.
     """
-
     new_line_spaces = int((WINDOW_WIDTH - len(line)) / 2)
     return "".join([" " for space in range(new_line_spaces)]) + line
 
@@ -398,9 +399,9 @@ def error_message(error):
 
     print_title()
     print()
-    print(center_line("ERROR HAS BEEN ENCOUNTERED!!!"))
+    print(set_color(center_line("ERROR HAS BEEN ENCOUNTERED!!!"), Fore.YELLOW))
     print()
-    print(center_line(repr(str(error))))
+    print(set_color(center_line(repr(str(error))), Fore.YELLOW))
     print()
     print(center_line("Please press any key to continue... "), end="", flush=True)
     readkey()
@@ -418,7 +419,7 @@ def print_title():
 
     new_line_spaces = int((WINDOW_WIDTH - len(TITLE)) / 2)
     new_line_section = "".join(["#" for space in range(new_line_spaces)])
-    print(new_line_section + TITLE + new_line_section)
+    print(set_color(new_line_section + TITLE + new_line_section, Fore.GREEN))
 
 
 def draw_game_results(winner):
@@ -432,10 +433,30 @@ def draw_game_results(winner):
     print()
 
     if winner:
-        print(center_line("█████████████████████████████████████████████████"))
-        print(center_line("█▄─█▀▀▀█─▄█▄─▄█▄─▀█▄─▄█▄─▀█▄─▄█▄─▄▄─█▄─▄▄▀█░█░█░█"))
-        print(center_line("██─█─█─█─███─███─█▄▀─███─█▄▀─███─▄█▀██─▄─▄█▄█▄█▄█"))
-        print(center_line("▀▀▄▄▄▀▄▄▄▀▀▄▄▄▀▄▄▄▀▀▄▄▀▄▄▄▀▀▄▄▀▄▄▄▄▄▀▄▄▀▄▄▀▄▀▄▀▄▀"))
+        print(
+            set_color(
+                center_line("█████████████████████████████████████████████████"),
+                Fore.GREEN,
+            )
+        )
+        print(
+            set_color(
+                center_line("█▄─█▀▀▀█─▄█▄─▄█▄─▀█▄─▄█▄─▀█▄─▄█▄─▄▄─█▄─▄▄▀█░█░█░█"),
+                Fore.GREEN,
+            )
+        )
+        print(
+            set_color(
+                center_line("██─█─█─█─███─███─█▄▀─███─█▄▀─███─▄█▀██─▄─▄█▄█▄█▄█"),
+                Fore.GREEN,
+            )
+        )
+        print(
+            set_color(
+                center_line("▀▀▄▄▄▀▄▄▄▀▀▄▄▄▀▄▄▄▀▀▄▄▀▄▄▄▀▀▄▄▀▄▄▄▄▄▀▄▄▀▄▄▀▄▀▄▀▄▀"),
+                Fore.GREEN,
+            )
+        )
 
         print()
         print(center_line("YEAH!!!"))
@@ -446,10 +467,38 @@ def draw_game_results(winner):
         print()
         print(center_line("Press Any Key To Continue..."), end="", flush=True)
     else:
-        print(center_line("█████▀████████████████████████████████████████████████████"))
-        print(center_line("█─▄▄▄▄██▀▄─██▄─▀█▀─▄█▄─▄▄─███─▄▄─█▄─█─▄█▄─▄▄─█▄─▄▄▀█░█░█░█"))
-        print(center_line("█─██▄─██─▀─███─█▄█─███─▄█▀███─██─██▄▀▄███─▄█▀██─▄─▄█▄█▄█▄█"))
-        print(center_line("▀▄▄▄▄▄▀▄▄▀▄▄▀▄▄▄▀▄▄▄▀▄▄▄▄▄▀▀▀▄▄▄▄▀▀▀▄▀▀▀▄▄▄▄▄▀▄▄▀▄▄▀▄▀▄▀▄▀"))
+        print(
+            set_color(
+                center_line(
+                    "█████▀████████████████████████████████████████████████████"
+                ),
+                Fore.RED,
+            )
+        )
+        print(
+            set_color(
+                center_line(
+                    "█─▄▄▄▄██▀▄─██▄─▀█▀─▄█▄─▄▄─███─▄▄─█▄─█─▄█▄─▄▄─█▄─▄▄▀█░█░█░█"
+                ),
+                Fore.RED,
+            )
+        )
+        print(
+            set_color(
+                center_line(
+                    "█─██▄─██─▀─███─█▄█─███─▄█▀███─██─██▄▀▄███─▄█▀██─▄─▄█▄█▄█▄█"
+                ),
+                Fore.RED,
+            )
+        )
+        print(
+            set_color(
+                center_line(
+                    "▀▄▄▄▄▄▀▄▄▀▄▄▀▄▄▄▀▄▄▄▀▄▄▄▄▄▀▀▀▄▄▄▄▀▀▀▄▀▀▀▄▄▄▄▄▀▄▄▀▄▄▀▄▀▄▀▄▀"
+                ),
+                Fore.RED,
+            )
+        )
 
         print()
         print(center_line("OH NO!!!"))
@@ -461,6 +510,14 @@ def draw_game_results(winner):
         print(center_line("Press Any Key To Continue..."), end="", flush=True)
 
     readkey()
+
+
+def set_color(text, color):
+    """
+    Adds supplied color index to supplied string.
+    """
+    
+    return f"{color}{text}{Fore.RESET}"
 
 
 # endregion
@@ -483,5 +540,6 @@ def main():
                 game.update_board(user_input)
 
 
+init()
 main()
 # endregion
