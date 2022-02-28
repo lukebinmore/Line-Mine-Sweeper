@@ -62,7 +62,7 @@ class Board:
             new_line = ""
 
             if i == 0:
-                new_line = set_color("\u203E ", Fore.CYAN)
+                new_line = set_color("\u203E ", Fore.CYAN, True)
                 new_line = (
                     new_line
                     + "".join(["|\u203E\u203E\u203E\u203E\u203E" for cell in row])
@@ -74,13 +74,13 @@ class Board:
 
             print(center_line(new_line))
 
-            new_line = set_color(str(i + 1) + " ", Fore.CYAN)
+            new_line = set_color(str(i + 1) + " ", Fore.CYAN, True)
             new_line = (
                 new_line + "".join(["|  " + str(cell) + "  " for cell in row]) + "|  "
             )
             print(center_line(new_line))
 
-            new_line = set_color("_ ", Fore.CYAN)
+            new_line = set_color("_ ", Fore.CYAN, True)
             new_line = new_line + "".join(["|_____" for cell in row]) + "|  "
             print(center_line(new_line))
 
@@ -512,11 +512,13 @@ def draw_game_results(winner):
     readkey()
 
 
-def set_color(text, color):
+def set_color(text, color, shift=False):
     """
     Adds supplied color index to supplied string.
     """
     
+    if shift: return f"          {color}{text}{Fore.RESET}"
+
     return f"{color}{text}{Fore.RESET}"
 
 
