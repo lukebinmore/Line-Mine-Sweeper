@@ -430,79 +430,45 @@ def draw_game_results(winner):
     if winner:
         print(
             set_color(
-                center_line("█████████████████████████████████████████████████"),
-                Fore.GREEN,
-            )
-        )
-        print(
-            set_color(
-                center_line("█▄─█▀▀▀█─▄█▄─▄█▄─▀█▄─▄█▄─▀█▄─▄█▄─▄▄─█▄─▄▄▀█░█░█░█"),
-                Fore.GREEN,
-            )
-        )
-        print(
-            set_color(
-                center_line("██─█─█─█─███─███─█▄▀─███─█▄▀─███─▄█▀██─▄─▄█▄█▄█▄█"),
-                Fore.GREEN,
-            )
-        )
-        print(
-            set_color(
-                center_line("▀▀▄▄▄▀▄▄▄▀▀▄▄▄▀▄▄▄▀▀▄▄▀▄▄▄▀▀▄▄▀▄▄▄▄▄▀▄▄▀▄▄▀▄▀▄▀▄▀"),
+                f"""
+{center_line("█████████████████████████████████████████████████")}
+{center_line("█▄─█▀▀▀█─▄█▄─▄█▄─▀█▄─▄█▄─▀█▄─▄█▄─▄▄─█▄─▄▄▀█░█░█░█")}
+{center_line("██─█─█─█─███─███─█▄▀─███─█▄▀─███─▄█▀██─▄─▄█▄█▄█▄█")}
+{center_line("▀▀▄▄▄▀▄▄▄▀▀▄▄▄▀▄▄▄▀▀▄▄▀▄▄▄▀▀▄▄▀▄▄▄▄▄▀▄▄▀▄▄▀▄▀▄▀▄▀")}""",
                 Fore.GREEN,
             )
         )
 
-        print()
-        print(center_line("YEAH!!!"))
-        print()
-        print(center_line("You Found All The Mines!"))
-        print()
-        print(center_line("You Won! :)"))
-        print()
-        print(center_line("Press Any Key To Continue..."), end="", flush=True)
+        print(
+            f"""
+{center_line("YEAH!!!")}\n
+{center_line("You Found All The Mines!")}\n
+{center_line("You Won! :)")}\n
+{center_line("Press Any Key To Continue...")} """,
+            end="",
+            flush=True,
+        )
     else:
         print(
             set_color(
-                center_line(
-                    "█████▀████████████████████████████████████████████████████"
-                ),
-                Fore.RED,
-            )
-        )
-        print(
-            set_color(
-                center_line(
-                    "█─▄▄▄▄██▀▄─██▄─▀█▀─▄█▄─▄▄─███─▄▄─█▄─█─▄█▄─▄▄─█▄─▄▄▀█░█░█░█"
-                ),
-                Fore.RED,
-            )
-        )
-        print(
-            set_color(
-                center_line(
-                    "█─██▄─██─▀─███─█▄█─███─▄█▀███─██─██▄▀▄███─▄█▀██─▄─▄█▄█▄█▄█"
-                ),
-                Fore.RED,
-            )
-        )
-        print(
-            set_color(
-                center_line(
-                    "▀▄▄▄▄▄▀▄▄▀▄▄▀▄▄▄▀▄▄▄▀▄▄▄▄▄▀▀▀▄▄▄▄▀▀▀▄▀▀▀▄▄▄▄▄▀▄▄▀▄▄▀▄▀▄▀▄▀"
-                ),
+                f"""
+{center_line("█████▀████████████████████████████████████████████████████")}
+{center_line("█─▄▄▄▄██▀▄─██▄─▀█▀─▄█▄─▄▄─███─▄▄─█▄─█─▄█▄─▄▄─█▄─▄▄▀█░█░█░█")}
+{center_line("█─██▄─██─▀─███─█▄█─███─▄█▀███─██─██▄▀▄███─▄█▀██─▄─▄█▄█▄█▄█")}
+{center_line("▀▄▄▄▄▄▀▄▄▀▄▄▀▄▄▄▀▄▄▄▀▄▄▄▄▄▀▀▀▄▄▄▄▀▀▀▄▀▀▀▄▄▄▄▄▀▄▄▀▄▄▀▄▀▄▀▄▀")}""",
                 Fore.RED,
             )
         )
 
-        print()
-        print(center_line("OH NO!!!"))
-        print()
-        print(center_line("You Hit A Mine!"))
-        print()
-        print(center_line("Better Luck Next Time :)"))
-        print()
-        print(center_line("Press Any Key To Continue..."), end="", flush=True)
+        print(
+            f"""
+        {center_line("OH NO!!!")}\n        
+        {center_line("You Hit A Mine!")}\n        
+        {center_line("Better Luck Next Time :)")}\n        
+        {center_line("Press Any Key To Continue...")} """,
+            end="",
+            flush=True,
+        )
 
     readkey()
 
