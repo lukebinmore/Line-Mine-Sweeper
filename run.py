@@ -516,8 +516,9 @@ def set_color(text, color, shift=False):
     """
     Adds supplied color index to supplied string.
     """
-    
-    if shift: return f"          {color}{text}{Fore.RESET}"
+
+    if shift:
+        return f"          {color}{text}{Fore.RESET}"
 
     return f"{color}{text}{Fore.RESET}"
 
