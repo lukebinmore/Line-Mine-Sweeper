@@ -414,12 +414,10 @@ def print_title():
     Uses TITLE constant for title, and fills rest in with hashtags.
     """
 
-    clear_terminal = lambda: os.system("cls" if os.name in ["nt", "dos"] else "clear")
-    clear_terminal()
+    os.system("cls" if os.name in ["nt", "dos"] else "clear")
 
-    new_line_spaces = int((WINDOW_WIDTH - len(TITLE)) / 2)
-    new_line_section = "".join(["#" for space in range(new_line_spaces)])
-    print(set_color(new_line_section + TITLE + new_line_section, Fore.GREEN))
+    new_line_section = "#" * int((WINDOW_WIDTH - len(TITLE)) / 2)
+    print(set_color(f"{new_line_section}{TITLE}{new_line_section}", Fore.GREEN))
 
 
 def draw_game_results(winner):
@@ -517,7 +515,11 @@ def set_color(text, color, shift=False):
     Adds supplied color index to supplied string.
     """
 
-    return f"          {color}{text}{Fore.RESET}" if shift else f"{color}{text}{Fore.RESET}"
+    return (
+        f"          {color}{text}{Fore.RESET}"
+        if shift
+        else f"{color}{text}{Fore.RESET}"
+    )
 
 
 # endregion
