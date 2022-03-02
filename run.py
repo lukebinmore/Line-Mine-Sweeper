@@ -282,8 +282,8 @@ def center_line(line):
     Centers the given string based on the width of the terminal,
     set with the global WIDTH perameter.
     """
-    new_line_spaces = int((WINDOW_WIDTH - len(line)) / 2)
-    return "".join([" " for space in range(new_line_spaces)]) + line
+
+    return f"{' ' * int((WINDOW_WIDTH - len(line)) / 2)}{line}"
 
 
 def menu():
