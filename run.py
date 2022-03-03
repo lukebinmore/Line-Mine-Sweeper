@@ -262,12 +262,7 @@ class Board:
         if " " in (cell for row in self.grid_visable for cell in row):
             return True
 
-        flag_count = 0
-        for row in self.grid_visable:
-            for cell in row:
-                flag_count += 1 if cell == "F" else 0
-
-        if flag_count == self.mines:
+        if sum(row.count("F") for row in self.grid_visable) == self.mines:
             draw_game_results(True)
             return False
 
