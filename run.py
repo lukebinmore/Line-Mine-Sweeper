@@ -297,98 +297,86 @@ def menu():
 
     while True:
         print_title()
-        print()
-        print(center_line("Welcome to Line Mine Sweeper!!"))
-        print(center_line("Please select your desired settings below:"))
-        print()
-        print(center_line("1:"))
-        print(center_line(f"Set Game Size - Current: {settings[0]}X{settings[0]}"))
-        print()
-        print(center_line("2:"))
-        print(center_line(f"Set Mine Count - Current: {settings[1]}"))
-        print()
-        print(center_line("ENTER:"))
-        print(center_line("Start Game!"))
-        print()
+
+        print(
+            f"\n{center_line('Welcome to Line Mine Sweeper!!')}"
+            f"\n{center_line('Please select your desired settings below:')}"
+            f"\n\n{center_line('1:')}"
+            f"\n{center_line(f'Set Game Size - Current: {settings[0]}X{settings[0]}')}"
+            f"\n\n{center_line('2:')}"
+            f"\n{center_line(f'Set Mine Count - Current: {settings[1]}')}"
+            f"\n\n{center_line('ENTER:')}"
+            f"\n{center_line('Start Game!')}"
+        )
+
         if settings[1] > settings[0] * settings[0]:
-            print(center_line("!!!MINE COUNT TOO HIGH!!!"))
-            print(center_line("Please increase grid size, or decrease mine count!"))
-            print()
+            print(
+                f"\n{center_line('!!!MINE COUNT TOO HIGH!!!')}"
+                f"\n{center_line('Please increase grid size, or decrease mine count!')}"
+            )
 
         try:
-            print(center_line("\bPlease enter your selection: "), end="", flush=True)
+            print(
+                "\n" + center_line("\bPlease enter your selection: "),
+                end="",
+                flush=True,
+            )
             selection = readkey()
 
             if selection == "1":
                 print_title()
-                print()
-                print(center_line("Please enter your desired grid size."))
                 print(
-                    center_line(
-                        "Please enter a single number for grid size. (E.G. 5 = 5X5)"
-                    )
+                    f"\n{center_line('Please enter your desired grid size.')}"
+                    f"\n{center_line('Please enter a single number for grid size. (E.G. 5 = 5X5)')}"
+                    f"\n{center_line('Minimum = 2 | Maximum = 7')}"
+                    f"\n{center_line(f'Current = {settings[0]} X {settings[0]}')}"
                 )
-                print(center_line("Minimum = 2 | Maximum = 7"))
-                print(center_line(f"Current = {settings[0]} X {settings[0]}"))
-                print()
 
                 print(
-                    center_line("\bPlease enter your selection: "), end="", flush=True
+                    "\n" + center_line("\bPlease enter your selection: "),
+                    end="",
+                    flush=True,
                 )
                 selection = readkey()
 
-                if selection.isdigit():
-                    selection = int(selection)
-                else:
+                if not selection.isdigit():
                     raise ValueError(f"INVALID INPUT: {selection} is not a number.")
-
-                if selection < 2:
+                if int(selection) < 2:
                     raise ValueError(f"INVALID INPUT: {selection} is too low.")
-                elif selection > 7:
+                if int(selection) > 7:
                     raise ValueError(f"INVALID INPUT: {selection} is too high.")
-                else:
-                    settings[0] = selection
+
+                settings[0] = int(selection)
 
             elif selection == "2":
                 print_title()
-                print()
-                print(center_line("Please enter your desired mine count."))
                 print(
-                    center_line(
-                        "Please enter a single or double digit number. (E.G. 5 OR 20)"
-                    )
+                    f"{center_line('Please enter your desired mine count.')}"
+                    f"{center_line('Please enter a single or double digit number. (E.G. 5 OR 20)')}"
+                    f"{center_line(f'Minimum = 1 | Maximum = {settings[0] * settings[0]}')}"
+                    f"{center_line(f'Current Mines = {settings[1]}')}"
                 )
-                print(
-                    center_line(f"Minimum = 1 | Maximum = {settings[0] * settings[0]}")
-                )
-                print(center_line(f"Current Mines = {settings[1]}"))
-                print()
 
                 selection = input(center_line("Please enter your selection: "))
 
-                if selection.isdigit():
-                    selection = int(selection)
-                else:
+                if not selection.isdigit():
                     raise ValueError(f"INVALID INPUT: {selection} is not a number.")
-
-                if selection < 1:
+                if int(selection) < 1:
                     raise ValueError(f"INVALID INPUT: {selection} is too low.")
-                elif selection > settings[0] * settings[0]:
+                if int(selection) > settings[0] * settings[0]:
                     raise ValueError(f"INVALID INPUT: {selection} is too high.")
-                else:
-                    settings[1] = selection
+
+                settings[1] = int(selection)
 
             elif selection == "\r":
                 if settings[1] > settings[0] * settings[0]:
                     raise ValueError("ERROR: Cannot start game. Too many mines.")
-                else:
-                    return settings
+
+                return settings
             else:
                 raise ValueError(f"UNKNOWN INPUT: {selection} is not an option.")
         except ValueError as error:
             error_message(error)
-
-    return settings
 
 
 def error_message(error):
@@ -462,9 +450,9 @@ def draw_game_results(winner):
 
         print(
             f"""
-        {center_line("OH NO!!!")}\n        
-        {center_line("You Hit A Mine!")}\n        
-        {center_line("Better Luck Next Time :)")}\n        
+        {center_line("OH NO!!!")}\n
+        {center_line("You Hit A Mine!")}\n
+        {center_line("Better Luck Next Time :)")}\n
         {center_line("Press Any Key To Continue...")} """,
             end="",
             flush=True,
