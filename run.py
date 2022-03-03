@@ -346,13 +346,13 @@ def menu():
             elif selection == "2":
                 print_title()
                 print(
-                    f"{center_line('Please enter your desired mine count.')}"
-                    f"{center_line('Please enter a single or double digit number. (E.G. 5 OR 20)')}"
-                    f"{center_line(f'Minimum = 1 | Maximum = {settings[0] * settings[0]}')}"
-                    f"{center_line(f'Current Mines = {settings[1]}')}"
+                    f"\n{center_line('Please enter your desired mine count.')}"
+                    f"\n{center_line('Please enter a single or double digit number. (E.G. 5 OR 20)')}"
+                    f"\n{center_line(f'Minimum = 1 | Maximum = {settings[0] * settings[0]}')}"
+                    f"\n{center_line(f'Current Mines = {settings[1]}')}"
                 )
 
-                selection = input(center_line("Please enter your selection: "))
+                selection = input("\n" + center_line("\bPlease enter your selection: "))
 
                 if not selection.isdigit():
                     raise ValueError(f"INVALID INPUT: {selection} is not a number.")
