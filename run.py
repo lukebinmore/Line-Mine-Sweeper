@@ -151,30 +151,20 @@ class Board:
         print(center_line("\b\bPlease enter coordinates: "), end="", flush=True)
 
         try:
-            selection[0] = readkey()
+            for i in range(2):
+                selection[i] = readkey()
 
-            if selection[0].isdigit():
-                selection[0] = int(selection[0])
-            else:
-                raise ValueError(f"INVALID INPUT: {selection[0]} is not a number.")
+                if not selection[i].isdigit():
+                    raise ValueError(f"INVALID INPUT: {selection[i]} is not a number.")
 
-            if selection[0] < 1 or selection[0] > self.size:
-                raise ValueError(f"INVALID INPUT: {selection[0]} is not on the board.")
+                if int(selection[i]) < 1 or int(selection[i]) > self.size:
+                    raise ValueError(
+                        f"INVALID INPUT: {selection[i]} is not on the board."
+                    )
 
-            print(str(selection[0]) + ":", end="", flush=True)
-            selection[0] = selection[0] - 1
-            selection[1] = readkey()
+                print(selection[i] + ":", end="", flush=True)
+                selection[i] = int(selection[i]) - 1
 
-            if selection[1].isdigit():
-                selection[1] = int(selection[1])
-            else:
-                raise ValueError(f"INVALID INPUT: {selection[1]} is not a number.")
-
-            if selection[1] < 1 or selection[1] > self.size:
-                raise ValueError(f"INVALID INPUT: {selection[1]} is not on the board.")
-
-            print(str(selection[1]) + ":", end="", flush=True)
-            selection[1] = int(selection[1]) - 1
             selection[2] = readkey()
 
             if selection[2].lower() == "f":
@@ -189,6 +179,7 @@ class Board:
             return selection
         except ValueError as error:
             error_message(error)
+            return None
 
     def update_board(self, selection):
         """
