@@ -293,6 +293,8 @@ def menu():
             f"\n{center_line(f'Set Game Size - Current: {settings[0]}X{settings[0]}')}"
             f"\n\n{center_line('2:')}"
             f"\n{center_line(f'Set Mine Count - Current: {settings[1]}')}"
+            f"\n\n{center_line('3:')}"
+            f"\n{center_line('Show Instructions')}"
             f"\n\n{center_line('ENTER:')}"
             f"\n{center_line('Start Game!')}"
         )
@@ -356,11 +358,15 @@ def menu():
 
                 settings[1] = int(selection)
 
+            elif selection == "3":
+                draw_instructions()
+
             elif selection == "\r":
                 if settings[1] > settings[0] * settings[0]:
                     raise ValueError("ERROR: Cannot start game. Too many mines.")
 
                 return settings
+
             else:
                 raise ValueError(f"UNKNOWN INPUT: {selection} is not an option.")
         except ValueError as error:
@@ -458,6 +464,35 @@ def set_color(text, color, shift=False):
         if shift
         else f"{color}{text}{Fore.RESET}"
     )
+
+
+def draw_instructions():
+    """
+    Prints the instructions for the game to the terminal,
+    Waits for any user input before continuing.
+    """
+
+    print_title()
+    print(
+        f"\n{center_line('Instructions!')}"
+        f"\n\n{center_line('Aim Of The Game!')}"
+        f"\n{center_line('The aim of the game is to flag all of the mines in the grid,')}"
+        f"\n{center_line('and reveal all non-mine spaces. To Win the game, all mines')}"
+        f"\n{center_line('have to be flagged, and all non-mine spaces have to be revealed.')}"
+    )
+
+    print("\n" + center_line("Press any key to continue... "), end="", flush=True)
+    readkey()
+
+    print(
+        f"\n\n{center_line('How To Play!')}"
+        f"\n{center_line('To select a space, enter the row number first, then the column,')}"
+        f"\n{center_line('then press f to flag the space, or ENTER to reveal the space.')}"
+        f"\n{center_line('E.G. 2:5:f')}"
+    )
+
+    print("\n" + center_line("Press any key to continue... "), end="", flush=True)
+    readkey()
 
 
 # endregion
