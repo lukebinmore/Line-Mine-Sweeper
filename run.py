@@ -8,12 +8,15 @@ from colorama import init, Fore
 
 # endregion
 
+
 # region Global Variables
 TITLE = "  LINE MINE SWEEPER!!  "
 WINDOW_WIDTH = 80
 MINE_VAL = -1
 DEFAULT_SETTINGS = [6, 10]
+
 # endregion
+
 
 # region Game Board Class
 class Board:
@@ -264,6 +267,7 @@ class Board:
 
 # endregion
 
+
 # region Functions
 def center_line(line):
     """
@@ -497,6 +501,7 @@ def draw_instructions():
 
 # endregion
 
+
 # region Main
 def main():
     """
@@ -511,10 +516,11 @@ def main():
 
             user_input = game.user_input()
 
-            if not user_input is None:
+            if user_input is not None:
                 game.update_board(user_input)
 
 
 init()
 main()
+
 # endregion
