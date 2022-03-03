@@ -1,3 +1,5 @@
+"""Line Mine Sweeper"""
+
 # region Imports
 import os
 from random import randint
