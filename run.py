@@ -386,9 +386,13 @@ def error_message(error):
     """
 
     print_title()
-    print(f"\n{set_color(center_line('ERROR HAS BEEN ENCOUNTERED!!!'), Fore.YELLOW)}\n")
-    print(f"{set_color(center_line(repr(str(error))), Fore.YELLOW)}\n")
-    print(f"{center_line('Please press any key to continue... ')}", end="", flush=True)
+    print(
+        f"\n{set_color(center_line('ERROR HAS BEEN ENCOUNTERED!!!'), Fore.YELLOW)}"
+        f"\n\n{set_color(center_line(repr(str(error))), Fore.YELLOW)}"
+        f"\n\n{center_line('Please press any key to continue... ')}",
+        end="",
+        flush=True,
+    )
     readkey()
 
 
