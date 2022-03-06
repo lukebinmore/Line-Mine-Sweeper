@@ -30,7 +30,7 @@ class Board:
     grid_visable = []
 
     def __init__(self, settings):
-        #Sets the settings for the instance, and creates the required grids
+        # Sets the settings for the instance, and creates the required grids
         self.size = settings[0]
         self.mines = settings[1]
         self.create_grids()
@@ -59,7 +59,7 @@ class Board:
 
         print_title()
 
-        #Creates the heading row of the board
+        # Creates the heading row of the board
         heading_top = (
             "".join(["|  " + str(i + 1) + "  " for i in range(self.size)]) +
             "|"
@@ -69,7 +69,7 @@ class Board:
         for i, row in enumerate(self.grid_visable):
             new_line = ""
 
-            #If printing the first line, use overlines instead of underlines
+            # If printing the first line, use overlines instead of underlines
             if i == 0:
                 new_line = set_color("\u203E ", Fore.CYAN, True)
                 new_line = (
@@ -87,7 +87,7 @@ class Board:
 
             print(center_line(new_line))
 
-            #Formats the line to printed with color and row number
+            # Formats the line to printed with color and row number
             new_line = set_color(str(i + 1) + " ", Fore.CYAN, True)
             new_line = (
                 new_line +
@@ -125,8 +125,8 @@ class Board:
                 if cell == MINE_VAL:
                     continue
 
-                #Checks each neighbouring cell for mines, and increases
-                #the cells number if one is found
+                # Checks each neighbouring cell for mines, and increases
+                # the cells number if one is found
                 if row > 0:
                     if (
                         col > 0 and
@@ -183,11 +183,11 @@ class Board:
         )
 
         try:
-            #Gets two integer inputs for row and column
+            # Gets two integer inputs for row and column
             for i in range(2):
                 selection[i] = readkey()
 
-                #Validates input
+                # Validates input
                 if not selection[i].isdigit():
                     raise ValueError(
                         f"INVALID INPUT: {selection[i]} is not a number."
@@ -198,13 +198,13 @@ class Board:
                         f"INVALID INPUT: {selection[i]} is not on the board."
                     )
 
-                #Prints the selection with appended seporators
+                # Prints the selection with appended seporators
                 print(selection[i] + ":", end="", flush=True)
                 selection[i] = int(selection[i]) - 1
 
             selection[2] = readkey()
 
-            #Checks if the third input is an f or ENTER
+            # Checks if the third input is an f or ENTER
             if selection[2].lower() == "f":
                 selection[2] = True
             elif selection[2] == "\r":
@@ -225,7 +225,7 @@ class Board:
         if not updates the visable board with the user's inputted coordinates.
         """
 
-        #Sets the input list to more readable variables
+        # Sets the input list to more readable variables
         row, col = selection[0], selection[1]
         flag = selection[2]
         value_hidden = self.grid_hidden[row][col]
@@ -291,16 +291,16 @@ class Board:
         if all other cells have been revealed.
         """
 
-        #Checks if there are any mines left
+        # Checks if there are any mines left
         if -1 in (cell for row in self.grid_visable for cell in row):
             draw_game_results(False)
             return False
 
-        #Checks if there are any un-revealed cells
+        # Checks if there are any un-revealed cells
         if " " in (cell for row in self.grid_visable for cell in row):
             return True
 
-        #Checks if the number of flagged mines is the same as the mines set
+        # Checks if the number of flagged mines is the same as the mines set
         if sum(row.count("F") for row in self.grid_visable) == self.mines:
             draw_game_results(True)
             return False
@@ -325,7 +325,7 @@ def center_line(input_text):
     for line in input_text.split("\n"):
         output_text += f"{' ' * int((WINDOW_WIDTH - len(line)) / 2)}{line}\n"
 
-    #Returns the centered string, removing the last additional new line
+    # Returns the centered string, removing the last additional new line
     return output_text[:-1]
 
 
@@ -336,13 +336,13 @@ def menu():
     Returns settings as list.
     """
 
-    #Sets the default settings for the game at start
+    # Sets the default settings for the game at start
     settings = DEFAULT_SETTINGS
 
     while True:
         print_title()
 
-        #Prints the main menu options
+        # Prints the main menu options
         print(
             center_line(
                 f"\nWelcome to Line Mine Sweeper!!"
@@ -358,7 +358,7 @@ def menu():
             )
         )
 
-        #Checks if the number of mines is higher than the number of cells
+        # Checks if the number of mines is higher than the number of cells
         if settings[1] > settings[0] * settings[0]:
             print(
                 center_line(
@@ -375,7 +375,7 @@ def menu():
             )
             selection = readkey()
 
-            #User input control - Changes menu or starts game
+            # User input control - Changes menu or starts game
             if selection == "1":
                 print_title()
                 print(
@@ -397,7 +397,7 @@ def menu():
                 )
                 selection = readkey()
 
-                #Input validation
+                # Input validation
                 if not selection.isdigit():
                     raise ValueError(
                         f"INVALID INPUT: {selection} is not a number."
@@ -427,7 +427,7 @@ def menu():
                     center_line("\n\bPlease enter your selection: ")
                 )
 
-                #Input validation
+                # Input validation
                 if not selection.isdigit():
                     raise ValueError(
                         f"INVALID INPUT: {selection} is not a number."
@@ -445,8 +445,8 @@ def menu():
                 draw_instructions()
 
             elif selection == "\r":
-                #Checks if the number of mines is not higher than the
-                #total number of cells
+                # Checks if the number of mines is not higher than the
+                # total number of cells
                 if settings[1] > settings[0] * settings[0]:
                     raise ValueError(
                         "ERROR: Cannot start game. Too many mines."
@@ -471,7 +471,7 @@ def error_message(error):
 
     print_title()
 
-    #Uses the repr function to show the actual character entered
+    # Uses the repr function to show the actual character entered
     print(
         center_line(
             "\n"
@@ -492,10 +492,10 @@ def print_title():
     Uses TITLE constant for title, and fills rest in with hashtags.
     """
 
-    #Clears the terminal, based on the operating system
+    # Clears the terminal, based on the operating system
     os.system("cls" if os.name in ["nt", "dos"] else "clear")
 
-    #Adds the starting and edning hashtags into the title
+    # Adds the starting and edning hashtags into the title
     new_line_section = "#" * int((WINDOW_WIDTH - len(TITLE)) / 2)
     print(
         set_color(f"{new_line_section}{TITLE}{new_line_section}", Fore.GREEN)
@@ -620,18 +620,18 @@ def main():
     Main function
     """
 
-    #Main loop - Keeps the game running
+    # Main loop - Keeps the game running
     while True:
-        #Create an instance of the game
+        # Create an instance of the game
         game = Board(menu())
 
-        #Game loop - Checks if the game is over and ends if it is.
+        # Game loop - Checks if the game is over and ends if it is.
         while game.check_game_over():
             game.draw_board()
 
             user_input = game.user_input()
 
-            #Checks if valid input has been provided
+            # Checks if valid input has been provided
             if user_input is not None:
                 game.update_board(user_input)
 
