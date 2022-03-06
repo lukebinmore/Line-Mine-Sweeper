@@ -91,6 +91,14 @@ If at any point, the player reveals a mine, it's game over!
 
 ## Data Model
 
+Line Mine Sweeper has been built around a game class, to allow for the creation and isolation of seperate game instances, with their own settings and grids.
+
+This game class houses the settings for the instance, the values of both the visable grid displayed to the user, and the hidden grid with the actual cell values.
+
+This class has been built with specific methods used to operate and play the game. These include but are not limited to the user_input method,
+that takes the input from the player and checks it for validitiy, before passing it to the update board method, where the player's selection is then checked for the next action to take.
+As well as the draw_board method, that is used to refresh the displayed board in the terminal window.
+
 ## Library's/Modules
 
 ## Testing
