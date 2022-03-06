@@ -12,6 +12,8 @@ flagging all of the mines and revealing all non-mine cells to win.
   - [Table of Contents](#table-of-contents)
   - [How to Play](#how-to-play)
   - [Features](#features)
+    - [Existing Features](#existing-features)
+    - [Future Features](#future-features)
   - [Data Model](#data-model)
   - [Library's/Modules](#librarysmodules)
   - [Testing](#testing)
@@ -42,6 +44,50 @@ If the player is able to flag all of the mines on the board, and reveal all of t
 If at any point, the player reveals a mine, it's game over!
 
 ## Features
+
+### Existing Features
+
+* Customizable Board Size
+  * Player can set the size of the board
+  * ![Customizable Board Size](media/feature-board-size.png)
+* Customizable Mine Count
+  * Player can choose how many mines are in play
+  * ![Customizable Mine Count](media/feature-mine-count.png)
+* Instructions Page
+  * Player can choose to show the instructions for the game
+  * ![Instructions Page](media/feature-instructions-page.png)
+* Randomly Located Bombs
+  * Bombs are placed randomly on the board
+* Colorization
+  * The terminal is colored to add some style
+* Input Validation/Error Alerts
+  * Player input is validated
+    * Only appropriate input is accepted
+  * Incorrect inputs are alerted to the player
+    * Player is alerted to incorrect input
+    * Player is alerted to impossible moves
+    * Plyer is alerted to already completed moves
+  * ![Error Alerts](media/feature-error-alerts.png)
+* Terminal Clearing
+  * Terminal is cleared before each screen update
+  * Keeps the information displayed relevant, and easy to read
+* ASCII Drawn Board
+  * To make getting the row and column easy
+  * ![ASCII Drawn Board](media/feature-ascii-drawn-board.png)
+* Game Results
+  * Winner Screen
+  * Game Over Screen
+  * ![Game Results Screen - Winner](media/feature-game-results-winner.png)
+  * ![Game Results Screen - Game Over](media/feature-game-results-game-over.png)
+
+### Future Features
+
+* Game Over Animation
+  * Possible animation that plays when the game ends, transitioning to the game over screen
+* Random Settings Option
+  * Give the player the option to play a game with random settings
+* Color Options
+  * Give the player the option to change the colors used
 
 ## Data Model
 
