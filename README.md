@@ -17,6 +17,9 @@ flagging all of the mines and revealing all non-mine cells to win.
   - [Data Model](#data-model)
   - [Libraries/Modules](#librariesmodules)
   - [Testing](#testing)
+    - [Validator Testing](#validator-testing)
+    - [Manual Testing](#manual-testing)
+    - [Remaining Bugs](#remaining-bugs)
   - [Deployment](#deployment)
   - [Credits](#credits)
 
@@ -46,7 +49,6 @@ If at any point, the player reveals a mine, it's game over!
 ## Features
 
 ### Existing Features
-
 * Customizable Board Size
   * Player can set the size of the board
   * ![Customizable Board Size](media/feature-board-size.png)
@@ -81,7 +83,6 @@ If at any point, the player reveals a mine, it's game over!
   * ![Game Results Screen - Game Over](media/feature-game-results-game-over.png)
 
 ### Future Features
-
 * Game Over Animation
   * Possible animation that plays when the game ends, transitioning to the game over screen
 * Random Settings Option
@@ -115,6 +116,76 @@ This game makes use of some external libraries/modules for varying purposes.
 
 ## Testing
 
+This project has been tested using both white box and black box methods, to ensure the correct information is calculated, stored and displayed as intended.
+
+Additionally, the code for this project has been validated, to ensure code standards have been met.
+
+### Validator Testing
+* [PEP8](http://pep8online.com/)
+  * Errors were detected and resolved
+    * Line length errors detected and resolved
+    * Line breaks after operators/operands detected and resolved
+* Visual Studio Code - Pylint
+  * No Errors or warnings detected
+
+### Manual Testing
+<details>
+<summary>White Box Testing</summary>
+
+* Is the title displayed correctly?
+  * Yes
+  * ![Title](media/testing-title.png)
+* Is the terminal window cleared of previous content?
+  * Yes
+* Is the menu displayed correctly?
+  * Yes
+  * ![Main Menu](media/testing-menu.png)
+* Do the correct options open on input?
+  * Yes
+  * ![Correct Options Input](media/testing-correct-options.png)
+* Is the correct information displayed on the options subpages?
+  * No
+    * Additional characters displayed - CORRECTED
+  * ![Correct Options Information](media/testing-correct-options-information.png)
+* Is the error message displayed on incorrect input?
+  * Yes
+  * ![Error Message Displayed](media/testing-error-message.png)
+* Is the correct validation response displayed on errors?
+  * Yes
+  * ![Error Message Content](media/testing-error-message.png)
+* Is the Mine Count Too High Warning Displayed?
+  * Yes
+  * ![Mine Count Warning](media/testing-mine-count-warning.png)
+* Is an error displayed if settings aren't correct/valid?
+  * Yes
+  * ![Incorrect Settings](media/testing-settings-error-message.png)
+* Is the board displayed/formatted correctly?
+  * Yes
+  * ![Game Board Displayed](media/testing-game-board-displayed.png)
+* Is the board updated correctly?
+  * Yes
+  * ![Game Board Updated](media/testing-game-board-updated.png)
+* Is the user input displayed correctly?
+  * Yes
+  * ![User Input Displayed Correctly](media/testing-user-input-displayed.png)
+* Is the flag removed when expected to?
+  * Yes
+* Is the Winner screen displayed correctly?
+  * Yes
+  * ![Winner Screen Displayed Correctly](media/testing-winner-screen.png)
+* Is the Game Over screen displayed correctly?
+  * Yes
+  * ![Game Over Screen Displayed Correctly](media/testing-game-over-screen.png)
+
+</details>
+
+<details>
+<summary>Black Box Testing</summary>
+
+</details>
+
+### Remaining Bugs
+
 ## Deployment
 
 This project has been deployed via Heroku, making use of the mock terminal provided by Code Institute.
@@ -143,7 +214,6 @@ This project has been deployed via Heroku, making use of the mock terminal provi
       * Will deploy the current release on GitHub
 
 ## Credits
-
 * Code Institute
   * Mock terminal used for deployment
 * Wikipedia
