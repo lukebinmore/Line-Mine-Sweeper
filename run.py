@@ -350,7 +350,7 @@ def menu():
                 f"\n\n1:"
                 f"\nSet Game Size - Current: {settings[0]}X{settings[0]}"
                 f"\n\n2:"
-                f"\nSet Mine Count - Current: {settings[0]}"
+                f"\nSet Mine Count - Current: {settings[1]}"
                 f"\n\n3:"
                 f"\nShow Instructions"
                 f"\n\nENTER:"
