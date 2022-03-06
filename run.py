@@ -382,8 +382,8 @@ def menu():
                     center_line(
                         "\nPlease enter your desired grid size."
                         "\nPlease enter a single number for grid size."
-                        "(E.G. 5 = 5X5)')}"
-                        "\nMinimum = 2 | Maximum = 7')}"
+                        "(E.G. 5 = 5X5)"
+                        "\nMinimum = 2 | Maximum = 7"
                         f"\nCurrent = {settings[0]} X {settings[0]}"
                     )
                 )
