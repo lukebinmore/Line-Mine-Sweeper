@@ -397,7 +397,8 @@ def menu():
                     center_line(
                         "\nPlease enter your desired mine count."
                         "\nPlease enter a whole number. (E.G. 5 OR 20)"
-                        f"\nMinimum = 1 | Maximum = {settings[0] * settings[0]}"
+                        "\nMinimum = 1 | Maximum = "
+                        f"{settings[0] * settings[0]}"
                         f"\nCurrent Mines = {settings[1]}"
                     )
                 )
@@ -448,7 +449,8 @@ def error_message(error):
     print_title()
     print(
         center_line(
-            f"\n{set_color('ERROR HAS BEEN ENCOUNTERED!!!', Fore.YELLOW, True)}"
+            "\n"
+            f"{set_color('ERROR HAS BEEN ENCOUNTERED!!!', Fore.YELLOW, True)}"
             f"\n\n{set_color(repr(str(error)), Fore.YELLOW, True)}"
             "\n\nPlease press any key to continue... "
         ),
@@ -509,10 +511,14 @@ def draw_game_results(winner):
         print(
             set_color(
                 center_line(
-                    "\n ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄ "
-                    "\n█░█─▄▄▄▄██▀▄─██▄─▀█▀─▄█▄─▄▄─███─▄▄─█▄─█─▄█▄─▄▄─█▄─▄▄▀█░█"
-                    "\n█▄█─██▄─██─▀─███─█▄█─███─▄█▀███─██─██▄▀▄███─▄█▀██─▄─▄█▄█"
-                    "\n▀▄█▄▄▄▄▄█▄▄█▄▄█▄▄▄█▄▄▄█▄▄▄▄▄███▄▄▄▄███▄███▄▄▄▄▄█▄▄█▄▄█▄▀"
+                    "\n"
+                    " ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄ "
+                    "\n"
+                    "█░█─▄▄▄▄██▀▄─██▄─▀█▀─▄█▄─▄▄─███─▄▄─█▄─█─▄█▄─▄▄─█▄─▄▄▀█░█"
+                    "\n"
+                    "█▄█─██▄─██─▀─███─█▄█─███─▄█▀███─██─██▄▀▄███─▄█▀██─▄─▄█▄█"
+                    "\n"
+                    "▀▄█▄▄▄▄▄█▄▄█▄▄█▄▄▄█▄▄▄█▄▄▄▄▄███▄▄▄▄███▄███▄▄▄▄▄█▄▄█▄▄█▄▀"
                 ),
                 Fore.RED
             )
