@@ -341,28 +341,17 @@ def menu():
             )
         )
 
-#        print(
-#            f"\n{center_line('Welcome to Line Mine Sweeper!!')}"
-#            f"\n{center_line('Please select your desired settings below:')}"
-#            f"\n\n{center_line('1:')}"
-#            f"\n{center_line(f'Set Game Size - Current: {settings[0]}X{settings[0]}')}"
-#            f"\n\n{center_line('2:')}"
-#            f"\n{center_line(f'Set Mine Count - Current: {settings[1]}')}"
-#            f"\n\n{center_line('3:')}"
-#            f"\n{center_line('Show Instructions')}"
-#            f"\n\n{center_line('ENTER:')}"
-#            f"\n{center_line('Start Game!')}"
-#        )
-
         if settings[1] > settings[0] * settings[0]:
             print(
-                f"\n{center_line('!!!MINE COUNT TOO HIGH!!!')}"
-                f"\n{center_line('Please increase grid size, or decrease mine count!')}"
+                center_line(
+                    "\n!!!MINE COUNT TOO HIGH!!!"
+                    "\nPlease increase grid size, or decrease mine count!"
+                )
             )
 
         try:
             print(
-                "\n" + center_line("\bPlease enter your selection: "),
+                center_line("\n\bPlease enter your selection: "),
                 end="",
                 flush=True,
             )
@@ -371,14 +360,19 @@ def menu():
             if selection == "1":
                 print_title()
                 print(
-                    f"\n{center_line('Please enter your desired grid size.')}"
-                    f"\n{center_line('Please enter a single number for grid size. (E.G. 5 = 5X5)')}"
-                    f"\n{center_line('Minimum = 2 | Maximum = 7')}"
-                    f"\n{center_line(f'Current = {settings[0]} X {settings[0]}')}"
+                    center_line(
+                        "\nPlease enter your desired grid size."
+                        "\nPlease enter a single number for grid size."
+                        "(E.G. 5 = 5X5)')}"
+                        "\nMinimum = 2 | Maximum = 7')}"
+                        f"\nCurrent = {settings[0]} X {settings[0]}"
+                    )
                 )
 
                 print(
-                    "\n" + center_line("\bPlease enter your selection: "),
+                    center_line(
+                        "\n\bPlease enter your selection: "
+                    ),
                     end="",
                     flush=True,
                 )
@@ -400,14 +394,16 @@ def menu():
             elif selection == "2":
                 print_title()
                 print(
-                    f"\n{center_line('Please enter your desired mine count.')}"
-                    f"\n{center_line('Please enter a whole number. (E.G. 5 OR 20)')}"
-                    f"\n{center_line(f'Minimum = 1 | Maximum = {settings[0] * settings[0]}')}"
-                    f"\n{center_line(f'Current Mines = {settings[1]}')}"
+                    center_line(
+                        "\nPlease enter your desired mine count."
+                        "\nPlease enter a whole number. (E.G. 5 OR 20)"
+                        f"\nMinimum = 1 | Maximum = {settings[0] * settings[0]}"
+                        f"\nCurrent Mines = {settings[1]}"
+                    )
                 )
 
                 selection = input(
-                    "\n" + center_line("\bPlease enter your selection: ")
+                    center_line("\n\bPlease enter your selection: ")
                 )
 
                 if not selection.isdigit():
@@ -451,9 +447,11 @@ def error_message(error):
 
     print_title()
     print(
-        f"\n{set_color(center_line('ERROR HAS BEEN ENCOUNTERED!!!'), Fore.YELLOW)}"
-        f"\n\n{set_color(center_line(repr(str(error))), Fore.YELLOW)}"
-        f"\n\n{center_line('Please press any key to continue... ')}",
+        center_line(
+            f"\n{set_color('ERROR HAS BEEN ENCOUNTERED!!!', Fore.YELLOW, True)}"
+            f"\n\n{set_color(repr(str(error)), Fore.YELLOW, True)}"
+            "\n\nPlease press any key to continue... "
+        ),
         end="",
         flush=True,
     )
@@ -487,38 +485,46 @@ def draw_game_results(winner):
     if winner:
         print(
             set_color(
-                f"\n{center_line(' ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄ ')}"
-                f"\n{center_line('█░█▄─█▀▀▀█─▄█▄─▄█▄─▀█▄─▄█▄─▀█▄─▄█▄─▄▄─█▄─▄▄▀█░█')}"
-                f"\n{center_line('█▄██─█─█─█─███─███─█▄▀─███─█▄▀─███─▄█▀██─▄─▄█▄█')}"
-                f"\n{center_line('▀▄██▄▄▄█▄▄▄██▄▄▄█▄▄▄██▄▄█▄▄▄██▄▄█▄▄▄▄▄█▄▄█▄▄█▄▀')}",
-                Fore.GREEN,
+                center_line(
+                    "\n ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄ "
+                    "\n█░█▄─█▀▀▀█─▄█▄─▄█▄─▀█▄─▄█▄─▀█▄─▄█▄─▄▄─█▄─▄▄▀█░█"
+                    "\n█▄██─█─█─█─███─███─█▄▀─███─█▄▀─███─▄█▀██─▄─▄█▄█"
+                    "\n▀▄██▄▄▄█▄▄▄██▄▄▄█▄▄▄██▄▄█▄▄▄██▄▄█▄▄▄▄▄█▄▄█▄▄█▄▀"
+                ),
+                Fore.GREEN
             )
         )
 
         print(
-            f"\n{center_line('YEAH!!!')}"
-            f"\n\n{center_line('You Found All The Mines!')}"
-            f"\n\n{center_line('You Won! :)')}"
-            f"\n\n{center_line('Press Any Key To Continue...')}",
+            center_line(
+                "\nYEAH!!!"
+                "\n\nYou Found All The Mines!"
+                "\n\nYou Won! :)"
+                "\n\nPress Any Key To Continue... "
+            ),
             end="",
             flush=True,
         )
     else:
         print(
             set_color(
-                f"\n{center_line(' ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄ ')}"
-                f"\n{center_line('█░█─▄▄▄▄██▀▄─██▄─▀█▀─▄█▄─▄▄─███─▄▄─█▄─█─▄█▄─▄▄─█▄─▄▄▀█░█')}"
-                f"\n{center_line('█▄█─██▄─██─▀─███─█▄█─███─▄█▀███─██─██▄▀▄███─▄█▀██─▄─▄█▄█')}"
-                f"\n{center_line('▀▄█▄▄▄▄▄█▄▄█▄▄█▄▄▄█▄▄▄█▄▄▄▄▄███▄▄▄▄███▄███▄▄▄▄▄█▄▄█▄▄█▄▀')}",
-                Fore.RED,
+                center_line(
+                    "\n ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄ "
+                    "\n█░█─▄▄▄▄██▀▄─██▄─▀█▀─▄█▄─▄▄─███─▄▄─█▄─█─▄█▄─▄▄─█▄─▄▄▀█░█"
+                    "\n█▄█─██▄─██─▀─███─█▄█─███─▄█▀███─██─██▄▀▄███─▄█▀██─▄─▄█▄█"
+                    "\n▀▄█▄▄▄▄▄█▄▄█▄▄█▄▄▄█▄▄▄█▄▄▄▄▄███▄▄▄▄███▄███▄▄▄▄▄█▄▄█▄▄█▄▀"
+                ),
+                Fore.RED
             )
         )
 
         print(
-            f"\n{center_line('OH NO!!!')}"
-            f"\n\n{center_line('You Hit A Mine!')}"
-            f"\n\n{center_line('Better Luck Next Time :)')}"
-            f"\n\n{center_line('Press Any Key To Continue...')}",
+            center_line(
+                "\nOH NO!!!"
+                "\n\nYou Hit A Mine!"
+                "\n\nBetter Luck Next Time :)"
+                "\n\nPress Any Key To Continue..."
+            ),
             end="",
             flush=True,
         )
@@ -546,29 +552,26 @@ def draw_instructions():
 
     print_title()
     print(
-        f"\n{center_line('Instructions!')}"
-        f"\n\n{center_line('Aim Of The Game!')}"
-        f"\n{center_line('The aim of the game is to flag all of the mines in the grid,')}"
-        f"\n{center_line('and reveal all non-mine spaces. To Win the game, all mines')}"
-        f"\n{center_line('have to be flagged, and all non-mine spaces have to be revealed.')}"
-    )
-
-    print(
-        "\n" + center_line("Press any key to continue... "),
+        center_line(
+            "\nInstructions!"
+            "\n\nAim Of The Game!"
+            "\nThe aim of the game is to flag all of the mines in the grid,"
+            "\nand reveal all non-mine spaces. To Win the game, all mines"
+            "\nhave to be flagged, "
+            "and all non-mine spaces have to be revealed."
+            "\n\nPress any key to continue... "),
         end="",
         flush=True
     )
     readkey()
 
     print(
-        f"\n\n{center_line('How To Play!')}"
-        f"\n{center_line('To select a space, enter the row number first, then the column,')}"
-        f"\n{center_line('then press f to flag the space, or ENTER to reveal the space.')}"
-        f"\n{center_line('E.G. 2:5:f')}"
-    )
-
-    print(
-        "\n" + center_line("Press any key to continue... "),
+        center_line(
+            "\n\nHow To Play!"
+            "\nTo select a space, enter the row number first, then the column,"
+            "\nthen press f to flag the space, or ENTER to reveal the space."
+            "\nE.G. 2:5:f"
+            "\n\nPress any key to continue... "),
         end="",
         flush=True
     )
