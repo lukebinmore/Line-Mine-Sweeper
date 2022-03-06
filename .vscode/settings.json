@@ -22,10 +22,10 @@
    "files.autoSave": "afterDelay",
    "workbench.colorTheme": "Default Dark+",
 "editor.defaultFormatter": "HookyQR.beautify",
+"editor.rulers": [79, 120],
 "[python]": {
 
 
     "editor.defaultFormatter": "ms-python.python"
-},
-"python.formatting.provider": "black"
+}
 }

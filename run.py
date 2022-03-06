@@ -59,7 +59,8 @@ class Board:
         print_title()
 
         heading_top = (
-            "".join(["|  " + str(i + 1) + "  " for i in range(self.size)]) + "|"
+            "".join(["|  " + str(i + 1) + "  " for i in range(self.size)]) +
+            "|"
         )
         print(set_color(center_line(heading_top), Fore.CYAN))
 
@@ -69,19 +70,24 @@ class Board:
             if i == 0:
                 new_line = set_color("\u203E ", Fore.CYAN, True)
                 new_line = (
-                    new_line
-                    + "".join(["|\u203E\u203E\u203E\u203E\u203E" for cell in row])
-                    + "|   "
+                    new_line +
+                    "".join(
+                        ["|\u203E\u203E\u203E\u203E\u203E" for cell in row]
+                    ) +
+                    "|   "
                 )
             else:
                 new_line = "  "
-                new_line = new_line + "".join(["|     " for cell in row]) + "|  "
+                new_line = (
+                    new_line + "".join(["|     " for cell in row]) + "|  "
+                )
 
             print(center_line(new_line))
 
             new_line = set_color(str(i + 1) + " ", Fore.CYAN, True)
             new_line = (
-                new_line + "".join(["|  " + str(cell) + "  " for cell in row]) + "|  "
+                new_line +
+                "".join(["|  " + str(cell) + "  " for cell in row]) + "|  "
             )
             print(center_line(new_line))
 
@@ -91,7 +97,8 @@ class Board:
 
     def create_mines(self):
         """
-        Uses randint from the random library to create randomly located mines in the hidden grid.
+        Uses the random module to create random cell locations,
+        Populates cells with mines, if they aren't already mines.
         """
 
         for _ in range(self.mines):
@@ -115,52 +122,68 @@ class Board:
                     continue
 
                 if row > 0:
-                    if col > 0 and self.grid_hidden[row - 1][col - 1] == MINE_VAL:
+                    if (
+                        col > 0 and
+                        self.grid_hidden[row - 1][col - 1] == MINE_VAL
+                    ):
                         self.grid_hidden[row][col] += 1
 
                     if self.grid_hidden[row - 1][col] == MINE_VAL:
                         self.grid_hidden[row][col] += 1
 
                     if (
-                        col < self.size - 1
-                        and self.grid_hidden[row - 1][col + 1] == MINE_VAL
+                        col < self.size - 1 and
+                        self.grid_hidden[row - 1][col + 1] == MINE_VAL
                     ):
                         self.grid_hidden[row][col] += 1
 
                 if col > 0 and self.grid_hidden[row][col - 1] == MINE_VAL:
                     self.grid_hidden[row][col] += 1
-                if col < self.size - 1 and self.grid_hidden[row][col + 1] == MINE_VAL:
+                if (
+                    col < self.size - 1 and
+                    self.grid_hidden[row][col + 1] == MINE_VAL
+                ):
                     self.grid_hidden[row][col] += 1
 
                 if row < self.size - 1:
-                    if col > 0 and self.grid_hidden[row + 1][col - 1] == MINE_VAL:
+                    if (
+                        col > 0 and
+                        self.grid_hidden[row + 1][col - 1] == MINE_VAL
+                    ):
                         self.grid_hidden[row][col] += 1
 
                     if self.grid_hidden[row + 1][col] == MINE_VAL:
                         self.grid_hidden[row][col] += 1
 
                     if (
-                        col < self.size - 1
-                        and self.grid_hidden[row + 1][col + 1] == MINE_VAL
+                        col < self.size - 1 and
+                        self.grid_hidden[row + 1][col + 1] == MINE_VAL
                     ):
                         self.grid_hidden[row][col] += 1
 
     def user_input(self):
         """
         User input manager for game.
-        Takes user's input, and runs appropriate function based on what is received.
+        Takes user's input,
+        and runs appropriate function based on what is received.
         """
 
         selection = ["", "", ""]
 
-        print(center_line("\b\bPlease enter coordinates: "), end="", flush=True)
+        print(
+            center_line("\b\bPlease enter coordinates: "),
+            end="",
+            flush=True
+        )
 
         try:
             for i in range(2):
                 selection[i] = readkey()
 
                 if not selection[i].isdigit():
-                    raise ValueError(f"INVALID INPUT: {selection[i]} is not a number.")
+                    raise ValueError(
+                        f"INVALID INPUT: {selection[i]} is not a number."
+                    )
 
                 if int(selection[i]) < 1 or int(selection[i]) > self.size:
                     raise ValueError(
@@ -209,16 +232,21 @@ class Board:
 
         else:
             error_message(
-                f"INVALID INPUT: {row + 1}:{col + 1} has already been already revealed!"
+                f"INVALID INPUT: {row + 1}:{col + 1}"
+                f" has already been already revealed!"
             )
 
     def update_neighbours(self, row, col):
         """
         Checks neighbouring cells for 0 values,
-        Addes them to the visable board if they are zero's adjasent to the starting cell.
+        Addes them to the visable board if they are
+        zero's adjasent to the starting cell.
         """
 
-        if self.grid_hidden[row][col] == 0 and self.grid_visable[row][col] == " ":
+        if (
+            self.grid_hidden[row][col] == 0 and
+            self.grid_visable[row][col] == " "
+        ):
             self.grid_visable[row][col] = 0
 
             if row > 0 and col > 0:
@@ -248,7 +276,8 @@ class Board:
     def check_game_over(self):
         """
         Checks if the game should end.
-        Checks if all mines have been flagged and all other cells have been revealed.
+        Checks if all mines have been flagged and
+        if all other cells have been revealed.
         """
 
         if -1 in (cell for row in self.grid_visable for cell in row):
@@ -351,14 +380,20 @@ def menu():
                     f"\n{center_line(f'Current Mines = {settings[1]}')}"
                 )
 
-                selection = input("\n" + center_line("\bPlease enter your selection: "))
+                selection = input(
+                    "\n" + center_line("\bPlease enter your selection: ")
+                )
 
                 if not selection.isdigit():
-                    raise ValueError(f"INVALID INPUT: {selection} is not a number.")
+                    raise ValueError(
+                        f"INVALID INPUT: {selection} is not a number."
+                    )
                 if int(selection) < 1:
                     raise ValueError(f"INVALID INPUT: {selection} is too low.")
                 if int(selection) > settings[0] * settings[0]:
-                    raise ValueError(f"INVALID INPUT: {selection} is too high.")
+                    raise ValueError(
+                        f"INVALID INPUT: {selection} is too high."
+                    )
 
                 settings[1] = int(selection)
 
@@ -367,12 +402,16 @@ def menu():
 
             elif selection == "\r":
                 if settings[1] > settings[0] * settings[0]:
-                    raise ValueError("ERROR: Cannot start game. Too many mines.")
+                    raise ValueError(
+                        "ERROR: Cannot start game. Too many mines."
+                    )
 
                 return settings
 
             else:
-                raise ValueError(f"UNKNOWN INPUT: {selection} is not an option.")
+                raise ValueError(
+                    f"UNKNOWN INPUT: {selection} is not an option."
+                )
         except ValueError as error:
             error_message(error)
 
@@ -380,7 +419,8 @@ def menu():
 def error_message(error):
     """
     Formats and displays an error the program has encountered.
-    Takes in the error as a string, and adjusts the terminal display to show it.
+    Takes in the error as a string,
+    and adjusts the terminal display to show it.
     """
 
     print_title()
@@ -404,7 +444,9 @@ def print_title():
     os.system("cls" if os.name in ["nt", "dos"] else "clear")
 
     new_line_section = "#" * int((WINDOW_WIDTH - len(TITLE)) / 2)
-    print(set_color(f"{new_line_section}{TITLE}{new_line_section}", Fore.GREEN))
+    print(
+        set_color(f"{new_line_section}{TITLE}{new_line_section}", Fore.GREEN)
+    )
 
 
 def draw_game_results(winner):
@@ -485,7 +527,11 @@ def draw_instructions():
         f"\n{center_line('have to be flagged, and all non-mine spaces have to be revealed.')}"
     )
 
-    print("\n" + center_line("Press any key to continue... "), end="", flush=True)
+    print(
+        "\n" + center_line("Press any key to continue... "),
+        end="",
+        flush=True
+    )
     readkey()
 
     print(
@@ -495,7 +541,11 @@ def draw_instructions():
         f"\n{center_line('E.G. 2:5:f')}"
     )
 
-    print("\n" + center_line("Press any key to continue... "), end="", flush=True)
+    print(
+        "\n" + center_line("Press any key to continue... "),
+        end="",
+        flush=True
+    )
     readkey()
 
 
