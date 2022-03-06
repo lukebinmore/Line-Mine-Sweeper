@@ -116,7 +116,7 @@ This game makes use of some external libraries/modules for varying purposes.
 
 ## Testing
 
-This project has been tested using both white box and black box methods, to ensure the correct information is calculated, stored and displayed as intended.
+This project has been tested, to ensure the correct information is calculated, stored and displayed as intended.
 
 Additionally, the code for this project has been validated, to ensure code standards have been met.
 
@@ -130,7 +130,7 @@ Additionally, the code for this project has been validated, to ensure code stand
 
 ### Manual Testing
 <details>
-<summary>White Box Testing</summary>
+<summary>Testing Run & Results</summary>
 
 * Is the title displayed correctly?
   * Yes
@@ -176,11 +176,20 @@ Additionally, the code for this project has been validated, to ensure code stand
 * Is the Game Over screen displayed correctly?
   * Yes
   * ![Game Over Screen Displayed Correctly](media/testing-game-over-screen.png)
-
-</details>
-
-<details>
-<summary>Black Box Testing</summary>
+* Is all text correctly centered?
+  * Yes
+* Is all text spaced as expected?
+  * Yes
+* Are mines correctly randomly generated each game?
+  * Yes
+* Are numbers in hidden grid correctly calculated?
+  * Yes
+* Are zero's recursively revealed?
+  * Yes
+* Does board adjust to specified settings?
+  * Yes
+* Are current settings correctly displayed in the menu?
+  * Yes
 
 </details>
 
