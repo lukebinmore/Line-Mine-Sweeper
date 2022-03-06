@@ -15,7 +15,7 @@ flagging all of the mines and revealing all non-mine cells to win.
     - [Existing Features](#existing-features)
     - [Future Features](#future-features)
   - [Data Model](#data-model)
-  - [Library's/Modules](#librarysmodules)
+  - [Libraries/Modules](#librariesmodules)
   - [Testing](#testing)
   - [Deployment](#deployment)
   - [Credits](#credits)
@@ -99,7 +99,19 @@ This class has been built with specific methods used to operate and play the gam
 that takes the input from the player and checks it for validitiy, before passing it to the update board method, where the player's selection is then checked for the next action to take.
 As well as the draw_board method, that is used to refresh the displayed board in the terminal window.
 
-## Library's/Modules
+## Libraries/Modules
+
+This game makes use of some external libraries/modules for varying purposes.
+
+* os
+  * Used to clear the terminal window, based on what OS the game is running on
+* randint from random
+  * Used to generate a random cell location when setting the mines
+* readkey from readchar
+  * Used to get user input with a single keypress
+  * Used to pause for any user input when information is displayed
+* init, fore from colorama
+  * Used to color text displayed in the terminal
 
 ## Testing
 
