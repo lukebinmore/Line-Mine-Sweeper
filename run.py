@@ -298,13 +298,20 @@ class Board:
 
 
 # region Functions
-def center_line(line):
+def center_line(input_text):
     """
     Centers the given string based on the width of the terminal,
     set with the global WIDTH perameter.
+    Splits the string by the new line operator,
+    Applies the calculation to each substring.
     """
 
-    return f"{' ' * int((WINDOW_WIDTH - len(line)) / 2)}{line}"
+    output_text = ""
+
+    for line in input_text.split("\n"):
+        output_text += f"{' ' * int((WINDOW_WIDTH - len(line)) / 2)}{line}\n"
+
+    return output_text[:-1]
 
 
 def menu():
@@ -320,17 +327,32 @@ def menu():
         print_title()
 
         print(
-            f"\n{center_line('Welcome to Line Mine Sweeper!!')}"
-            f"\n{center_line('Please select your desired settings below:')}"
-            f"\n\n{center_line('1:')}"
-            f"\n{center_line(f'Set Game Size - Current: {settings[0]}X{settings[0]}')}"
-            f"\n\n{center_line('2:')}"
-            f"\n{center_line(f'Set Mine Count - Current: {settings[1]}')}"
-            f"\n\n{center_line('3:')}"
-            f"\n{center_line('Show Instructions')}"
-            f"\n\n{center_line('ENTER:')}"
-            f"\n{center_line('Start Game!')}"
+            center_line(
+                f"\nWelcome to Line Mine Sweeper!!"
+                f"\nPlease select your desired settings below:"
+                f"\n\n1:"
+                f"\nSet Game Size - Current: {settings[0]}X{settings[0]}"
+                f"\n\n2:"
+                f"\nSet Mine Count - Current: {settings[0]}"
+                f"\n\n3:"
+                f"\nShow Instructions"
+                f"\n\nENTER:"
+                f"\nStart Game!"
+            )
         )
+
+#        print(
+#            f"\n{center_line('Welcome to Line Mine Sweeper!!')}"
+#            f"\n{center_line('Please select your desired settings below:')}"
+#            f"\n\n{center_line('1:')}"
+#            f"\n{center_line(f'Set Game Size - Current: {settings[0]}X{settings[0]}')}"
+#            f"\n\n{center_line('2:')}"
+#            f"\n{center_line(f'Set Mine Count - Current: {settings[1]}')}"
+#            f"\n\n{center_line('3:')}"
+#            f"\n{center_line('Show Instructions')}"
+#            f"\n\n{center_line('ENTER:')}"
+#            f"\n{center_line('Start Game!')}"
+#        )
 
         if settings[1] > settings[0] * settings[0]:
             print(
@@ -363,11 +385,15 @@ def menu():
                 selection = readkey()
 
                 if not selection.isdigit():
-                    raise ValueError(f"INVALID INPUT: {selection} is not a number.")
+                    raise ValueError(
+                        f"INVALID INPUT: {selection} is not a number."
+                    )
                 if int(selection) < 2:
                     raise ValueError(f"INVALID INPUT: {selection} is too low.")
                 if int(selection) > 7:
-                    raise ValueError(f"INVALID INPUT: {selection} is too high.")
+                    raise ValueError(
+                        f"INVALID INPUT: {selection} is too high."
+                    )
 
                 settings[0] = int(selection)
 
