@@ -143,3 +143,15 @@ This project has been deployed via Heroku, making use of the mock terminal provi
       * Will deploy the current release on GitHub
 
 ## Credits
+
+* Code Institute
+  * Mock terminal used for deployment
+* Wikipedia
+  * Information on the rules of Minesweeper
+* W3C
+  * Information on built in python modules
+* Stack Overflow
+  * Information on varying methods of iteration
+  * Information on class Magic Methods
+* Pep8 Online
+  * Validation of Code
