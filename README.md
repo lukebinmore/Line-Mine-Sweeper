@@ -117,4 +117,29 @@ This game makes use of some external libraries/modules for varying purposes.
 
 ## Deployment
 
+This project has been deployed via Heroku, making use of the mock terminal provided by Code Institute.
+
+* Process for deployment
+  * Clone this repository
+  * Sign up/into [Heroku](https://id.heroku.com/login)
+  * Create a new Heroku app
+  * Give the new app a name
+  * Select the appropriate region
+  * Open the "Settings" tab on the Heroku App dashboard
+  * Add a new config var
+    * Set the KEY to "PORT"
+    * set the VALUE to "8000"
+  * Set the buildpacks to Python and NodeJS
+    * (NOTE - Needs to be in that order)
+  * Open the "Deploy" tab
+  * Select the "GitHub" deployment method
+  * Select "Link to GitHub"
+  * Link the new Heroku app to the GitHub repository & click "Connect"
+  * Option A:
+    * Enable Automatic Deploys
+      * Will automatically re-deploy with any updates or changes made
+  * Option B:
+    * Deploy Branch Manually
+      * Will deploy the current release on GitHub
+
 ## Credits
